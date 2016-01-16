@@ -11,15 +11,16 @@
 
 //--------------------------------------------------- Interfaces utilisées
 #include "Shape.h"
-//------------------------------------------------------------- Constantes 
+#include "Point.h"
+//------------------------------------------------------------- Constantes
 
-//------------------------------------------------------------------ Types 
+//------------------------------------------------------------------ Types
 
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 // Rôle de la classe <Segment>
 //
 //
-//------------------------------------------------------------------------ 
+//------------------------------------------------------------------------
 
 class Segment : public Shape
 {
@@ -30,10 +31,15 @@ public:
     // type Méthode ( liste de paramètres );
     Point & intersection (const Segment &);
     // Mode d'emploi :
-    //return the intersection between the current Segment and the segment in parameter. 
+    //return the intersection between the current Segment and the segment in parameter.
     // Contrat :
     //
 
+    virtual bool Contains(const Point & p);
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
 //------------------------------------------------- Surcharge d'opérateurs
     Segment & operator = ( const Segment & unSegment );
@@ -62,7 +68,7 @@ public:
     // Contrat :
     //
 
-//------------------------------------------------------------------ PRIVE 
+//------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
