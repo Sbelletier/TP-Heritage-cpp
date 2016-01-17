@@ -1,18 +1,18 @@
 /*************************************************************************
                            MultiShape  -  description
                              -------------------
-    début                : ${date}
+    dï¿½but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <MultiShape> (fichier ${file_name}) --
+//---------- Rï¿½alisation de la classe <MultiShape> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
-
+//essai git
 //------------------------------------------------------ Include personnel
 #include "MultiShape.h"
 
@@ -20,18 +20,18 @@ using namespace std;
 
 //---------------------------------------------------- Variables de classe
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privï¿½s
 
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-//----------------------------------------------------- Méthodes publiques
-// type MultiShape::Méthode ( liste de paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type MultiShape::Mï¿½thode ( liste de paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 
 void MultiShape::move(int dx, int dy)
 //Algorithme :
@@ -42,7 +42,7 @@ void MultiShape::move(int dx, int dy)
     }
 }//----- Fin de Move
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 MultiShape & MultiShape::operator = ( const MultiShape & unMultiShape )
 // Algorithme :
 //
@@ -105,6 +105,6 @@ MultiShape::~MultiShape ( )
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- Mï¿½thodes privï¿½es
