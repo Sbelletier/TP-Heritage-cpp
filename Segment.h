@@ -10,7 +10,7 @@
 #define SEGMENT_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Shape.h"
+#include "shape.h"
 #include "Point.h"
 //------------------------------------------------------------- Constantes
 

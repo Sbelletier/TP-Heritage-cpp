@@ -12,6 +12,8 @@
 //-------------------------------------------------------- Include syst�me
 using namespace std;
 #include <iostream>
+#include <vector>
+#include <string>
 //essai git ds
 //------------------------------------------------------ Include personnel
 #include "MultiShape.h"

@@ -77,7 +77,7 @@ protected:
     // Contrat :
     //
 
-    Shape (string aName="");
+    Shape (std::string aName="");
     // Mode d'emploi :
     //
     // Contrat :
@@ -97,8 +97,8 @@ private:
 
 protected:
 //----------------------------------------------------- Attributs protégés
-string name;
-vector<Point> points;
+std::string name;
+std::vector<Point> points;
 
 
 private:
