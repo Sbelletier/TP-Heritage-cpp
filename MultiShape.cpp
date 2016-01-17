@@ -12,7 +12,7 @@
 //-------------------------------------------------------- Include syst�me
 using namespace std;
 #include <iostream>
-//essai git
+//essai git ds
 //------------------------------------------------------ Include personnel
 #include "MultiShape.h"
 
