@@ -11,7 +11,7 @@
 
 
 //--------------------------------------------------- Interfaces utilis�es
-#include "shape.h"
+#include "Shape.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -62,7 +62,7 @@ public:
     // Contrat :
     //
 
-    MultiShape (std::string aName );
+    MultiShape (std::string aName,  vector<Shape> aShapeVec );
     // Mode d'emploi :
     //
     // Contrat :

@@ -62,9 +62,9 @@ MultiShape::MultiShape ( const MultiShape & unMultiShape )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <MultiShape>" << endl;
 #endif
-    for(int i=0; i<MultiShape.shapes.size(); i++)
+    for(int i=0; i<unMultiShape.shapes.size(); i++)
     {
-        shapes.push_back(Shape(MultiShape.shapes[i]));
+        shapes.push_back(Shape(unMultiShape.shapes[i]));
     }
 } //----- Fin de MultiShape (constructeur de copie)
 

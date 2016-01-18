@@ -1,38 +1,37 @@
 /*************************************************************************
                            Intersection  -  description
                              -------------------
-    début                : ${date}
+    dï¿½but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <Intersection> (fichier ${file_name}) --
+//---------- Rï¿½alisation de la classe <Intersection> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 #include <vector>
 #include <string>
 //------------------------------------------------------ Include personnel
 #include "Intersection.h"
-#include "MultiShape.h"
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privï¿½s
 
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-//----------------------------------------------------- Méthodes publiques
-// type Intersection::Méthode ( liste de paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type Intersection::Mï¿½thode ( liste de paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 bool Intersection::Contains(const Point &p)
 //Algorithme :
 {
@@ -47,7 +46,7 @@ bool Intersection::Contains(const Point &p)
 }
 
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 Intersection & Intersection::operator = ( const Intersection & unIntersection )
 // Algorithme :
 //
@@ -88,6 +87,6 @@ Intersection::~Intersection ( )
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- Mï¿½thodes privï¿½es
