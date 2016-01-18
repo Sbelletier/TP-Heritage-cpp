@@ -1,11 +1,11 @@
 /*************************************************************************
-                           Union  -  description
+                           Intersection  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <Union> (fichier ${file_name}) --
+//---------- Réalisation de la classe <Intersection> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -15,7 +15,7 @@ using namespace std;
 #include <vector>
 #include <string>
 //------------------------------------------------------ Include personnel
-#include "Union.h"
+#include "Intersection.h"
 #include "MultiShape.h"
 //------------------------------------------------------------- Constantes
 
@@ -28,26 +28,27 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-// type Union::Méthode ( liste de paramètres )
+// type Intersection::Méthode ( liste de paramètres )
 // Algorithme :
 //
 //{
 //} //----- Fin de Méthode
-
-bool Union::Contains(const Point &p){
+bool Intersection::Contains(const Point &p)
 //Algorithme :
-    for(int i=0;i<shapes.size())
+{
+    for(int i=0;i<shapes.size();i++)
     {
-        if(shapes[i].Contains(p))
+        if(!shapes[i].Contains(p))
         {
-            return true;
+            return false;
         }
     }
-    return false;
-}//----- Fin de Contains
+    return true;
+}
+
 
 //------------------------------------------------- Surcharge d'opérateurs
-Union & Union::operator = ( const Union & unUnion )
+Intersection & Intersection::operator = ( const Intersection & unIntersection )
 // Algorithme :
 //
 {
@@ -55,34 +56,34 @@ Union & Union::operator = ( const Union & unUnion )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Union::Union ( const Union & unUnion )
+Intersection::Intersection ( const Intersection & unIntersection )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <Union>" << endl;
+    cout << "Appel au constructeur de copie de <Intersection>" << endl;
 #endif
-} //----- Fin de Union (constructeur de copie)
+} //----- Fin de Intersection (constructeur de copie)
 
 
-Union::Union ( )
+Intersection::Intersection ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Union>" << endl;
+    cout << "Appel au constructeur de <Intersection>" << endl;
 #endif
-} //----- Fin de Union
+} //----- Fin de Intersection
 
 
-Union::~Union ( )
+Intersection::~Intersection ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Union>" << endl;
+    cout << "Appel au destructeur de <Intersection>" << endl;
 #endif
-} //----- Fin de ~Union
+} //----- Fin de ~Intersection
 
 
 //------------------------------------------------------------------ PRIVE

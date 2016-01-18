@@ -29,11 +29,6 @@ class Segment : public Shape
 public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
-    Point & intersection (const Segment &);
-    // Mode d'emploi :
-    //return the intersection between the current Segment and the segment in parameter.
-    // Contrat :
-    //
 
     virtual bool Contains(const Point & p);
     // Mode d'emploi :
