@@ -27,19 +27,15 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-// type Rectangle::M�thode ( liste de param�tres )
-// Algorithme :
-//
-//{
-//} //----- Fin de M�thode
-
-
-//------------------------------------------------- Surcharge d'op�rateurs
-Rectangle & Rectangle::operator = ( const Rectangle & unRectangle )
+bool Rectangle::Contains(const Point & p)
 // Algorithme :
 //
 {
-} //----- Fin de operator =
+	return ( ((p.x<points[0].x && p.x>points[1].x) ||  (p.x>points[0].x && p.x<points[1].x))     &&     ((p.y<points[0].y && p.y>points[1].y) ||  (p.y>points[0].y && p.y<points[1].y) ));
+
+} //----- Fin de M�thode
+
+
 
 
 //-------------------------------------------- Constructeurs - destructeur
@@ -60,6 +56,20 @@ Rectangle::Rectangle ( )
 #ifdef MAP
     cout << "Appel au constructeur de <Rectangle>" << endl;
 #endif
+} //----- Fin de Rectangle
+
+Rectangle::Rectangle ( std::string aName, int* p):Shape(aName)
+// Algorithme :
+//
+{
+
+	points.push_back(Point(p[0],p[1]));
+	points.push_back(Point(p[2],p[3]));
+#ifdef MAP
+    cout << "Appel au constructeur de <Rectangle>" << endl;
+#endif
+
+
 } //----- Fin de Rectangle
 
 
