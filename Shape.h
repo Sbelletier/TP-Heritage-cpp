@@ -58,11 +58,12 @@ public:
     // Contrat :
     //
 
+//-------------------------------------------- Constructeurs - destructeur
     virtual ~Shape ( );
-       // Mode d'emploi :
-       //
-       // Contrat :
-       //
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
 
 //------------------------------------------------------------------ PRIVE 
@@ -81,7 +82,6 @@ protected:
     //
     // Contrat :
     //
-
 
 
 
