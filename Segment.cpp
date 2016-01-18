@@ -69,7 +69,7 @@ Segment::Segment ( const Segment & unSegment ):Shape(unSegment.name)
 } //----- Fin de Segment (constructeur de copie)
 
 
-Segment::Segment ( string aName, int x1, int y1, int x2, int y2 )
+Segment::Segment ( string aName, int* aPoints )
 	:Shape(aName)
 // Algorithme :
 //
@@ -78,8 +78,8 @@ Segment::Segment ( string aName, int x1, int y1, int x2, int y2 )
     cout << "Appel au constructeur de <Segment>" << endl;
 #endif
 
-	points.push_back( Point( x1, y1 ));
-	points.push_back( Point( x2, y2 ));
+	points.push_back( Point( aPoints[0], aPoints[1] ));
+	points.push_back( Point( aPoints[2], aPoints[3] ));
 
 
 } //----- Fin de Segment

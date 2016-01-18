@@ -51,7 +51,7 @@ public:
     // Contrat :
     //
 
-    Segment (string aName, int x1, int y1, int x2, int y2 );
+    Segment (string aName, int* aPoints );
     // Mode d'emploi :
     //
     // Contrat :
