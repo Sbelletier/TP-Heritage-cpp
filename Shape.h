@@ -49,11 +49,6 @@ public:
     // Contrat :
     //
     
-    virtual Shape* Intersect(const Shape & unShape )=0;
-    // Mode d'emploi :
-    //
-    // Contrat :
-    // 
 
 
 //------------------------------------------------- Surcharge d'opérateurs
