@@ -33,7 +33,7 @@ class Shape
 public:
 //----------------------------------------------------- Méthodes publiques
    
-   void move(int dx, int dy);
+   void Move(int dx, int dy);
     
     // Mode d'emploi :
     //
