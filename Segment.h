@@ -25,10 +25,11 @@
 class Segment : public Shape
 {
 //----------------------------------------------------------------- PUBLIC
-
 public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
+    string const type = "Segment";
+
 
     virtual bool Contains(const Point & p);
     // Mode d'emploi :
