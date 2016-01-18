@@ -58,7 +58,11 @@ public:
     // Contrat :
     //
 
-
+    virtual ~Shape ( );
+       // Mode d'emploi :
+       //
+       // Contrat :
+       //
 
 
 //------------------------------------------------------------------ PRIVE 
@@ -78,11 +82,7 @@ protected:
     // Contrat :
     //
 
-    virtual ~Shape ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+
 
 
 //----------------------------------------------------- Méthodes protégées

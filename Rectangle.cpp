@@ -31,7 +31,7 @@ bool Rectangle::Contains(const Point & p)
 // Algorithme :
 //
 {
-	return ( ((p.x<points[0].x && p.x>points[1].x) ||  (p.x>points[0].x && p.x<points[1].x))     &&     ((p.y<points[0].y && p.y>points[1].y) ||  (p.y>points[0].y && p.y<points[1].y) ));
+	return ( ((p.x<=points[0].x && p.x>=points[1].x) ||  (p.x>=points[0].x && p.x<=points[1].x))     &&     ((p.y<=points[0].y && p.y>=points[1].y) ||  (p.y>=points[0].y && p.y<=points[1].y) ));
 
 } //----- Fin de M�thode
 
@@ -57,14 +57,12 @@ Rectangle::Rectangle ( )
     cout << "Appel au constructeur de <Rectangle>" << endl;
 #endif
 } //----- Fin de Rectangle
-
-Rectangle::Rectangle ( std::string aName, int* p):Shape(aName)
+Rectangle::Rectangle ( std::string aName, int* aPoints):Shape(aName)
 // Algorithme :
 //
 {
-
-	points.push_back(Point(p[0],p[1]));
-	points.push_back(Point(p[2],p[3]));
+	points.push_back( Point( aPoints[0], aPoints[1] ));
+		points.push_back( Point( aPoints[2], aPoints[3] ));
 #ifdef MAP
     cout << "Appel au constructeur de <Rectangle>" << endl;
 #endif

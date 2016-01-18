@@ -51,7 +51,7 @@ public:
     // Contrat :
     //
 
-    Segment (string aName, int* aPoints );
+    Segment (std::string aName, int* aPoints );
     // Mode d'emploi :
     //
     // Contrat :

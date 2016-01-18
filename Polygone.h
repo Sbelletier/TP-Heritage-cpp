@@ -56,7 +56,7 @@ public:
     // Contrat :
     //
 
-    Polygone (string aName, const vector<int> & vectInt );
+    Polygone (std::string aName, const std::vector<int> & vectInt );
         // Mode d'emploi :
         //
         // Contrat :

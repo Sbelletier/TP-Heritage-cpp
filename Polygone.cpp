@@ -32,38 +32,54 @@ bool Polygone::Contains(const Point & p)
 // Algorithme :
 //
 {
-	bool right=false;
-	bool left=false;
-	bool up=false;
-	bool down=false;
+	bool contains=true;
 	int i=0;
-	while(i<points.size() && (!right || !left || !up || !down))
+	int sign=0;
+	bool s=false;
+	while (sign==0)
 	{
-		if(!right && points[i]<p.x)
-		{
-			right=true;
-		}
-
-		if(!left && points[i]>p.x)
-		{
-			left=true;
-		}
-
-		if(!up && points[i]>p.y)
-		{
-			up=true;
-		}
-		if(!down && points[i]<p.y)
-		{
-			down=true;
-		}
+		sign=(p.x-points[i].x)*(points[i+1].y-points[i].y)-(p.y-points[i].y)*(points[i+1].x-points[i].x);
 		i++;
 	}
-	if(i==points.size())
+	i=0;
+	if(sign>0)
 	{
-		return false;
+		s=true;
 	}
-	return true;
+	if(s)
+	{
+		while (contains && i<points.size()-1)
+		{
+			cout<<"s"<<(p.x-points[i].x)*(points[i+1].y-points[i].y)-(p.y-points[i].y)*(points[i+1].x-points[i].x)<<endl;
+			if( (p.x-points[i].x)*(points[i+1].y-points[i].y)-(p.y-points[i].y)*(points[i+1].x-points[i].x)<=0)
+			{
+				contains=false;
+			}
+			i++;
+		}
+		if( (p.x-points[i].x)*(points[0].y-points[i].y)-(p.y-points[i].y)*(points[0].x-points[i].x)<=0)
+		{
+			contains=false;
+		}
+	}
+	else
+	{
+		while (contains && i<points.size()-1)
+		{
+			cout<<"s"<<(p.x-points[i].x)*(points[i+1].y-points[i].y)-(p.y-points[i].y)*(points[i+1].x-points[i].x)<<endl;
+			if( ((p.x-points[i].x)*(points[i+1].y-points[i].y)-(p.y-points[i].y)*(points[i+1].x-points[i].x))>=0)
+			{
+				contains=false;
+			}
+			i++;
+		}
+
+		if( ((p.x-points[i].x)*(points[0].y-points[i].y)-(p.y-points[i].y)*(points[0].x-points[i].x))>=0)
+		{
+			contains=false;
+		}
+	}
+	return contains;
 } //----- Fin de M�thode
 
 
