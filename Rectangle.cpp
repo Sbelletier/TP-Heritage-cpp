@@ -1,22 +1,20 @@
 /*************************************************************************
-                           MultiShape  -  description
+                           Rectangle  -  description
                              -------------------
     d�but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- R�alisation de la classe <MultiShape> (fichier ${file_name}) --
+//---------- R�alisation de la classe <Rectangle> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include syst�me
 using namespace std;
 #include <iostream>
-#include <vector>
-#include <string>
-//essai git ds
+
 //------------------------------------------------------ Include personnel
-#include "MultiShape.h"
+#include "Rectangle.h"
 
 //------------------------------------------------------------- Constantes
 
@@ -29,80 +27,50 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
-// type MultiShape::M�thode ( liste de param�tres )
+// type Rectangle::M�thode ( liste de param�tres )
 // Algorithme :
 //
 //{
 //} //----- Fin de M�thode
 
-void MultiShape::move(int dx, int dy)
-//Algorithme :
-{
-    for(int i=0; i<shapes.size(); i++)
-    {
-        shapes[i].move( dx, dy );
-    }
-}//----- Fin de Move
 
 //------------------------------------------------- Surcharge d'op�rateurs
-MultiShape & MultiShape::operator = ( const MultiShape & unMultiShape )
+Rectangle & Rectangle::operator = ( const Rectangle & unRectangle )
 // Algorithme :
 //
 {
-
 } //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-MultiShape::MultiShape ( const MultiShape & unMultiShape )
-    :name(unMultiShape.name)
+Rectangle::Rectangle ( const Rectangle & unRectangle )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de copie de <MultiShape>" << endl;
+    cout << "Appel au constructeur de copie de <Rectangle>" << endl;
 #endif
-    for(int i=0; i<unMultiShape.shapes.size(); i++)
-    {
-        //shapes.push_back(Shape(unMultiShape.shapes[i]));
-    }
-} //----- Fin de MultiShape (constructeur de copie)
+} //----- Fin de Rectangle (constructeur de copie)
 
 
-MultiShape::MultiShape ( string aName, vector<Shape> aShapeVec )
-    :name(aName)
+Rectangle::Rectangle ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <MultiShape>" << endl;
+    cout << "Appel au constructeur de <Rectangle>" << endl;
 #endif
-    for(int i=0; i<aShapeVec.size(); i++)
-    {
-        //shapes.push_back(Shape(aShapeVec[i]));
-    }
-} //----- Fin de MultiShape
+} //----- Fin de Rectangle
 
 
-MultiShape::MultiShape ( string aName )
-    :name(aName)
+Rectangle::~Rectangle ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <MultiShape>" << endl;
+    cout << "Appel au destructeur de <Rectangle>" << endl;
 #endif
-} //----- Fin de MultiShape
-
-
-MultiShape::~MultiShape ( )
-// Algorithme :
-//
-{
-#ifdef MAP
-    cout << "Appel au destructeur de <MultiShape>" << endl;
-#endif
-} //----- Fin de ~MultiShape
+} //----- Fin de ~Rectangle
 
 
 //------------------------------------------------------------------ PRIVE
