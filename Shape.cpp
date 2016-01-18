@@ -28,7 +28,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-void Shape::move(int dx, int dy)
+void Shape::Move(int dx, int dy)
 // Algorithme :
 //
 {
