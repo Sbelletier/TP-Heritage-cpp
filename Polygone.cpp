@@ -51,7 +51,6 @@ bool Polygone::Contains(const Point & p)
 		while (contains && i<points.size()-1)
 		{
 			int produitV=(p.x-points[i].x)*(points[i+1].y-points[i].y)-(p.y-points[i].y)*(points[i+1].x-points[i].x);
-			cout<<"qs "<<produitV<<endl;
 			int seg[]={points[i].x, points[i].y, points[i+1].x,points[i+1].y};
 			Segment s=Segment("",seg);
 			if(produitV<0 || (produitV==0 && !s.Contains(p)))
@@ -75,7 +74,6 @@ bool Polygone::Contains(const Point & p)
 			int produitV=(p.x-points[i].x)*(points[i+1].y-points[i].y)-(p.y-points[i].y)*(points[i+1].x-points[i].x);
 			int seg[]={points[i].x, points[i].y, points[i+1].x,points[i+1].y};
 			Segment s=Segment("",seg);
-			cout<<"qs "<<produitV<<endl;
 			if( (produitV>0 && !s.Contains(p)))
 			{
 				contains=false;

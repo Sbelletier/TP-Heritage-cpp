@@ -32,7 +32,7 @@ class Shape
 
 public:
 //----------------------------------------------------- Méthodes publiques
-   string const type="";
+   std::string const type="";
 
    void Move(int dx, int dy);
 

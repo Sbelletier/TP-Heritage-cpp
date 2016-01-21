@@ -1,15 +1,15 @@
 /*************************************************************************
                            Union  -  description
                              -------------------
-    début                : ${date}
+    dï¿½but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
-
-//---------- Réalisation de la classe <Union> (fichier ${file_name}) --
+/*
+//---------- Rï¿½alisation de la classe <Union> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 #include <vector>
@@ -21,18 +21,18 @@ using namespace std;
 
 //---------------------------------------------------- Variables de classe
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privï¿½s
 
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-//----------------------------------------------------- Méthodes publiques
-// type Union::Méthode ( liste de paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type Union::Mï¿½thode ( liste de paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 
 bool Union::Contains(const Point &p){
 //Algorithme :
@@ -46,7 +46,7 @@ bool Union::Contains(const Point &p){
     return false;
 }//----- Fin de Contains
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 Union & Union::operator = ( const Union & unUnion )
 // Algorithme :
 //
@@ -87,6 +87,6 @@ Union::~Union ( )
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- Mï¿½thodes privï¿½es*/

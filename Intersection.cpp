@@ -5,7 +5,7 @@
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- R�alisation de la classe <Intersection> (fichier ${file_name}) --
+/*//---------- R�alisation de la classe <Intersection> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
@@ -73,7 +73,7 @@ Intersection::Intersection ( )
     cout << "Appel au constructeur de <Intersection>" << endl;
 #endif
 } //----- Fin de Intersection
-*/
+
 
 Intersection::~Intersection ( )
 // Algorithme :
@@ -89,4 +89,4 @@ Intersection::~Intersection ( )
 
 //----------------------------------------------------- M�thodes prot�g�es
 
-//------------------------------------------------------- M�thodes priv�es
+//------------------------------------------------------- M�thodes priv�es*/
