@@ -28,6 +28,8 @@ class Polygone : public Shape
 
 public:
 //----------------------------------------------------- M�thodes publiques
+    string const type = "Polygon";
+
 	virtual bool Contains(const Point & p);
     // Mode d'emploi :
     //
