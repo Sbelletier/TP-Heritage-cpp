@@ -60,18 +60,19 @@ public:
     //
 
 //-------------------------------------------- Constructeurs - destructeur
-    virtual ~Shape ( );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
+	virtual ~Shape ( );
+	   // Mode d'emploi :
+	   //
+	   // Contrat :
+	   //
+
 
 
 //------------------------------------------------------------------ PRIVE
 
 protected:
 
-//-------------------------------------------- Constructeurs - destructeur
+
     Shape ( const Shape & unShape );
     // Mode d'emploi (constructeur de copie) :
     //

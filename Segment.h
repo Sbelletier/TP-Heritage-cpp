@@ -28,7 +28,7 @@ class Segment : public Shape
 public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
-    std::string const type = "Segment";
+    string const type = "Segment";
 
 
     virtual bool Contains(const Point & p);

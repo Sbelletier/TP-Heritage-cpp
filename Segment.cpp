@@ -32,6 +32,7 @@ bool Segment::Contains(const Point & p)
 // Algorithme :
 //
 {
+	cout<<"biteeeeeeee"<<endl;
 	if( !(p.x>points[0].x && p.x>points[1].x) && !(p.x < points[0].x && p.x < points[1].x))
 	{
 		float coeff=(points[0].y-points[1].y)/(points[0].x-points[1].x);
