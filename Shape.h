@@ -42,7 +42,7 @@ public:
     //
 
 
-
+    string getName(){ return name; }
 
     virtual bool Contains(const Point & p)=0;
     // Mode d'emploi :
