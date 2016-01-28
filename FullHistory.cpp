@@ -1,15 +1,15 @@
 /*************************************************************************
                            FullHistory  -  description
                              -------------------
-    début                : ${date}
+    dï¿½but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <FullHistory> (fichier ${file_name}) --
+//---------- Rï¿½alisation de la classe <FullHistory> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 #include <map>
@@ -23,18 +23,18 @@ using namespace std;
 
 //---------------------------------------------------- Variables de classe
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privï¿½s
 
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-//----------------------------------------------------- Méthodes publiques
-// type FullHistory::Méthode ( liste de paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type FullHistory::Mï¿½thode ( liste de paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 History* FullHistory::Cancel(map<string,Shape*> & model)
 {
     FullHistory* opposite;
@@ -56,12 +56,12 @@ void FullHistory::Clean()
 }
 
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
 FullHistory & FullHistory::operator = ( const FullHistory & unFullHistory )
 // Algorithme :
 //
 {
-    throw bad_function_call;//a history entry shouldn't be copied. it should be moved by reference or address
+    //throw bad_function_call;//a history entry shouldn't be copied. it should be moved by reference or address
 } //----- Fin de operator =
 
 
@@ -73,7 +73,7 @@ FullHistory::FullHistory ( const FullHistory & unFullHistory )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <FullHistory>" << endl;
 #endif
-    throw bad_function_call;//a history entry shouldn't be copied
+    //throw bad_function_call;//a history entry shouldn't be copied
 } //----- Fin de FullHistory (constructeur de copie)
 
 
@@ -100,6 +100,6 @@ FullHistory::~FullHistory ( )
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- Mï¿½thodes privï¿½es

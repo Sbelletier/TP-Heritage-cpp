@@ -42,7 +42,7 @@ public:
     //
 
 
-    string getName(){ return name; }
+
 
     virtual bool Contains(const Point & p)=0;
     // Mode d'emploi :
@@ -50,6 +50,11 @@ public:
     // Contrat :
     //
 
+    std::string & getName();
+        // Mode d'emploi :
+        //
+        // Contrat :
+        //
 
 
 //------------------------------------------------- Surcharge d'opérateurs

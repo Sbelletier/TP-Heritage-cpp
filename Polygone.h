@@ -29,7 +29,7 @@ class Polygone : public Shape
 public:
 //----------------------------------------------------- M�thodes publiques
     std::string const type = "Polygon";
-
+    static bool Polygone::convex(const int* p);
 	virtual bool Contains(const Point & p);
     // Mode d'emploi :
     //

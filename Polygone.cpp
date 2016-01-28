@@ -28,6 +28,13 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- M�thodes publiques
+
+static bool Polygone::convex(const int* p)
+{
+	bool conv=true;
+
+}
+
 bool Polygone::Contains(const Point & p)
 // Algorithme :
 //

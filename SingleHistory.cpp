@@ -1,15 +1,15 @@
 /*************************************************************************
                            SingleHistory  -  description
                              -------------------
-    début                : ${date}
+    dï¿½but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <SingleHistory> (fichier ${file_name}) --
+//---------- Rï¿½alisation de la classe <SingleHistory> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 #include <map>
@@ -22,18 +22,18 @@ using namespace std;
 
 //---------------------------------------------------- Variables de classe
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privï¿½s
 
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-//----------------------------------------------------- Méthodes publiques
-// type SingleHistory::Méthode ( liste de paramètres )
+//----------------------------------------------------- Mï¿½thodes publiques
+// type SingleHistory::Mï¿½thode ( liste de paramï¿½tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de Mï¿½thode
 History* SingleHistory::Cancel(map<string, Shape*> & model)
 //Algorithm :
 {
@@ -45,7 +45,7 @@ History* SingleHistory::Cancel(map<string, Shape*> & model)
     }
     else if ( command == "create" )
     {
-        model.erase(target->getName);
+        model.erase(target->getName());
         opposite = new SingleHistory("delete",target);
     }
     return opposite;
@@ -57,14 +57,15 @@ void SingleHistory::Clean()
 }
 
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
+/*
 SingleHistory & SingleHistory::operator = ( const SingleHistory & unSingleHistory )
 // Algorithme :
 //
 {
     throw bad_function_call;//a history entry shouldn't be copied. it should be moved by reference or address
 } //----- Fin de operator =
-
+*/
 
 //-------------------------------------------- Constructeurs - destructeur
 SingleHistory::SingleHistory ( const SingleHistory & unSingleHistory )
@@ -74,7 +75,7 @@ SingleHistory::SingleHistory ( const SingleHistory & unSingleHistory )
 #ifdef MAP
     cout << "Appel au constructeur de copie de <SingleHistory>" << endl;
 #endif
-    throw bad_function_call;//a history entry shouldn't be copied.
+   // throw bad_function_call;//a history entry shouldn't be copied.
 } //----- Fin de SingleHistory (constructeur de copie)
 
 
@@ -102,6 +103,6 @@ SingleHistory::~SingleHistory ( )
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- Mï¿½thodes privï¿½es

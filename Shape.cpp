@@ -36,7 +36,14 @@ void Shape::Move(int dx, int dy)
 	{
 		points[i].move(dx, dy);
 	}
-} //----- Fin de Méthode
+}
+
+string & Shape::getName()
+{
+	return name;
+}
+
+//----- Fin de Méthode
 
 
 //------------------------------------------------- Surcharge d'opérateurs
