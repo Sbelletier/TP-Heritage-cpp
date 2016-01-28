@@ -52,7 +52,7 @@ void FullHistory::Clean()
         wipe = it++;
         delete wipe->second;
     }
-    delete prevModel;
+   // delete prevModel;
 }
 
 

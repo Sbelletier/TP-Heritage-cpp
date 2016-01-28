@@ -29,10 +29,37 @@ using namespace std;
 
 //----------------------------------------------------- M�thodes publiques
 
-static bool Polygone::convex(const int* p)
+ bool Polygone::convex(int p[], int size)
 {
 	bool conv=true;
-
+	int i=0;
+	int vect=0;
+	int s=false;
+	if((p[i+2]-p[i])*(p[i+5]-p[i+3])-(p[i+3]-p[i+1])*(p[i+4]-p[i+2])>0)
+	{
+		s=true;
+	}
+	while(conv && i<size-5)
+	{
+		vect=(p[i+2]-p[i])*(p[i+5]-p[i+3])-(p[i+3]-p[i+1])*(p[i+4]-p[i+2]);
+		cout<<vect<<endl;
+		if( (s && vect<0 ) || ( !s && vect > 0 ) )
+		{
+			conv=false;
+		}
+		i+=2;
+	}
+	if(conv)
+	{
+		vect=(p[i+2]-p[i])*(p[1]-p[i+3])-(p[i+3]-p[i+1])*(p[0]-p[i+2]);
+		cout<<vect<<endl;
+		if( (s && vect<0 ) || ( !s && vect > 0 ) )
+		{
+			conv=false;
+		}
+	}
+	cout<<conv<<endl;
+	return conv;
 }
 
 bool Polygone::Contains(const Point & p)
@@ -131,11 +158,11 @@ Polygone::~Polygone ( )
 #endif
 } //----- Fin de ~Polygone
 
-Polygone::Polygone (string aName, const vector<int> & vectInt ):Shape(aName)
+Polygone::Polygone (string aName, int p[], int size  ):Shape(aName)
 {
-	for(int i=0; i<vectInt.size(); i+=2)
+	for(int i=0; i<size; i+=2)
 	{
-		points.push_back(Point(vectInt[i], vectInt[i+1]));
+		points.push_back(Point(p[i], p[i+1]));
 	}
 }
 

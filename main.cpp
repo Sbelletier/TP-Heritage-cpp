@@ -21,7 +21,8 @@ using namespace std;
 //------------------------------------------------------ Include personnel
 #include "Point.h"
 #include "Shape.h"
-	#include "Segment.h"
+#include "Segment.h"
+#include "Polygone.h"
 	//#include "MultiShape.h"
 		//#include "Intersection.h"
 		//#include "Union.h"
@@ -97,6 +98,25 @@ int main(int argc, char **argv)
 				mapShapes.insert(pair<string,Shape*>(name, s));
 
 				cout << "OK" << endl;
+			}
+
+			else if( splittedInput[0] == "P" )
+			{
+				int size=splittedInput.size()-2;
+				int p[size];
+				for(int i = 0; i<size; i++)
+				{
+					p[i]=atoi(splittedInput[i+2].c_str());
+				}
+				if(size>4 && Polygone::convex(p,size))
+				{
+					mapShapes.insert(pair<string,Shape*>(splittedInput[1], new Polygone(splittedInput[1] ,p, size)));
+					cout<<"OK"<<endl;
+				}
+				else
+				{
+				cout<<"PAS OK"<<endl;
+				}
 			}
 			else if( splittedInput[0] == "HIT")
 			{
