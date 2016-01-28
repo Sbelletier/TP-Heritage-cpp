@@ -23,6 +23,7 @@ using namespace std;
 #include "Shape.h"
 #include "Segment.h"
 #include "Polygone.h"
+#include "Rectangle.h"
 	//#include "MultiShape.h"
 		//#include "Intersection.h"
 		//#include "Union.h"
@@ -100,7 +101,22 @@ int main(int argc, char **argv)
 				cout << "OK" << endl;
 			}
 
-			else if( splittedInput[0] == "P" )
+			else if( splittedInput[0] == "R" )
+			{
+				string name =splittedInput[1];
+
+				int p[4];
+				p[0] = atoi(splittedInput[2].c_str());
+				p[1]= atoi(splittedInput[3].c_str());
+				p[2] = atoi(splittedInput[4].c_str());
+				p[3] = atoi(splittedInput[5].c_str());
+				Rectangle* s= new Rectangle(name,p);
+				mapShapes.insert(pair<string,Shape*>(name, s));
+
+				cout << "OK" << endl;
+			}
+
+			else if( splittedInput[0] == "PC" )
 			{
 				int size=splittedInput.size()-2;
 				int p[size];
@@ -115,7 +131,7 @@ int main(int argc, char **argv)
 				}
 				else
 				{
-				cout<<"PAS OK"<<endl;
+				cerr<<"Polynome is not convex"<<endl;
 				}
 			}
 			else if( splittedInput[0] == "HIT")

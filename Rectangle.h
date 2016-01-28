@@ -58,7 +58,7 @@ public:
     // Contrat :
     //
 
-    Rectangle ( std::string aName, int* p);
+    Rectangle ( std::string aName, int p[4]);
         // Mode d'emploi :
         //
         // Contrat :
