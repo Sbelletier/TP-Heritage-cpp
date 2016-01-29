@@ -42,7 +42,6 @@ using namespace std;
 	while(conv && i<size-5)
 	{
 		vect=(p[i+2]-p[i])*(p[i+5]-p[i+3])-(p[i+3]-p[i+1])*(p[i+4]-p[i+2]);
-		cout<<vect<<endl;
 		if( (s && vect<0 ) || ( !s && vect > 0 ) )
 		{
 			conv=false;
@@ -52,13 +51,11 @@ using namespace std;
 	if(conv)
 	{
 		vect=(p[i+2]-p[i])*(p[1]-p[i+3])-(p[i+3]-p[i+1])*(p[0]-p[i+2]);
-		cout<<vect<<endl;
 		if( (s && vect<0 ) || ( !s && vect > 0 ) )
 		{
 			conv=false;
 		}
 	}
-	cout<<conv<<endl;
 	return conv;
 }
 

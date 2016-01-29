@@ -29,6 +29,18 @@ using namespace std;
 		//#include "Union.h"
 
 //------------------------------------------------------ Declaration des fonctions
+string list(map<string, Shape*> & mapShapes)
+{
+	map<string, Shape*>::iterator it;
+	string list="";
+	for(it=mapShapes.begin(); it!=mapShapes.end(); it++)
+	{
+		list+=it->second->print();
+
+	}
+	return list;
+}
+
 void exportModel(string fileName, map<string, Shape*> & mapShapes);//OPTION SI COUT
 void importModel(string fileName, map<string, Shape*> & mapShapes);
 //void fillMultiShape(MultiShape & toFill, fstream & aStream);//used by import, potentially in a recursive way
@@ -50,7 +62,6 @@ int main(int argc, char **argv)
 	{
 		vector<string> splittedInput;
 		getline(cin, input);
-		cout<<input<<endl;
 		int index= input.find(' ');
 		while( index!=-1 )
 		{
@@ -165,6 +176,12 @@ int main(int argc, char **argv)
 				mapShapes[name]->Move(dx, dy);
 
 				cout << "OK" << endl;
+			}
+
+			else if(splittedInput[0] == "LIST")
+			{
+				string a=list(mapShapes);
+				cout<<a;
 			}
 			else
 			{

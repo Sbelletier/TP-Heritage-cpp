@@ -10,13 +10,14 @@
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
+
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
 #include "Shape.h"
-
-
+using namespace std;
+#include "string.h"
+#include <sstream>
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -28,6 +29,17 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+string Shape::print()
+{
+	string p=type+" "+name;
+	for(int i=0; i<points.size(); i++)
+	{
+		p+=" "+to_string(points[i].x)+" "+to_string(points[i].y);
+	}
+	p+="\r\n";
+	return p;
+}
+
 void Shape::Move(int dx, int dy)
 // Algorithme :
 //
@@ -80,6 +92,12 @@ Shape::~Shape ( )
 #endif
 } //----- Fin de ~Shape
 
+string Shape::to_string(int a)
+{
+	std::ostringstream ss;
+	ss << a;
+	return ss.str();
+}
 
 //------------------------------------------------------------------ PRIVE
 

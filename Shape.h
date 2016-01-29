@@ -41,8 +41,8 @@ public:
     // Contrat :
     //
 
-
-
+   std::string to_string(int a);
+   virtual std::string print();
 
     virtual bool Contains(const Point & p)=0;
     // Mode d'emploi :
