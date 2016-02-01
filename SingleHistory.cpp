@@ -69,6 +69,7 @@ SingleHistory & SingleHistory::operator = ( const SingleHistory & unSingleHistor
 
 //-------------------------------------------- Constructeurs - destructeur
 SingleHistory::SingleHistory ( const SingleHistory & unSingleHistory )
+    :History( unSingleHistory.command)
 // Algorithme :
 //
 {
@@ -80,7 +81,7 @@ SingleHistory::SingleHistory ( const SingleHistory & unSingleHistory )
 
 
 SingleHistory::SingleHistory (string type, Shape* atarget )
-    :command(type)
+    :History(type)
 // Algorithme :
 //
 {

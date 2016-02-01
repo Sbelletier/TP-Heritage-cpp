@@ -64,6 +64,7 @@ string & Shape::getName()
 
 //-------------------------------------------- Constructeurs - destructeur
 Shape::Shape ( const Shape & unShape )
+    :name(unShape.name), points(unShape.points)
 // Algorithme :
 //
 {
