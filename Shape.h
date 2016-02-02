@@ -6,8 +6,8 @@
 *************************************************************************/
 
 //---------- Interface de la classe <Shape> (fichier ${file_name}) ------
-#if ! defined ( SHAPE_H )
-#define SHAPE_H
+#if ! defined ( Shape_H )
+#define Shape_H
 
 
 
@@ -15,6 +15,7 @@
 //--------------------------------------------------- Interfaces utilisées
 #include <vector>
 #include "Point.h"
+#include <string>
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -32,9 +33,8 @@ class Shape
 
 public:
 //----------------------------------------------------- Méthodes publiques
-   std::string const type="";
 
-   void Move(int dx, int dy);
+   virtual void Move(int dx, int dy)=0;
 
     // Mode d'emploi :
     //
@@ -42,9 +42,20 @@ public:
     //
 
    std::string to_string(int a);
-   virtual std::string print();
+   // Mode d'emploi :
+       //
+       // Contrat :
+       //
 
-    virtual bool Contains(const Point & p)=0;
+
+   virtual std::string print()=0;
+   // Mode d'emploi :
+       //
+       // Contrat :
+       //
+
+
+   virtual bool Contains(const Point & p)=0;
     // Mode d'emploi :
     //
     // Contrat :
@@ -100,8 +111,7 @@ private:
 protected:
 //----------------------------------------------------- Attributs protégés
 std::string name;
-std::vector<Point> points;
-
+std::string type;
 
 private:
 //------------------------------------------------------- Attributs privés
@@ -117,4 +127,4 @@ private:
 
 //----------------------------------------- Types dépendants de <Shape>
 
-#endif // SHAPE_H
+#endif // Shape_H

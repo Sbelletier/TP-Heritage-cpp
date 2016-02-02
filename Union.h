@@ -1,26 +1,24 @@
 /*************************************************************************
                            Union  -  description
                              -------------------
-    début                : ${date}
+<<<<<<< HEAD
+    dï¿½but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
 //---------- Interface de la classe <Union> (fichier ${file_name}) ------
-#if ! defined ( UNION_H )
-#define UNION_H
+#if ! defined ( Union_H )
+#define Union_H
 
-//--------------------------------------------------- Interfaces utilisées
-#include "Shape.h"
+//--------------------------------------------------- Interfaces utilisï¿½es
+#include "Point.h"
 #include "MultiShape.h"
-
-
-
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Union>
+// Rï¿½le de la classe <Union>
 //
 //
 //------------------------------------------------------------------------
@@ -30,17 +28,16 @@ class Union : public MultiShape
 //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    std::string const type = "Union";
-    // type Méthode ( liste de paramètres );
+//----------------------------------------------------- Mï¿½thodes publiques
+
+	virtual bool Contains(const Point & p);
     // Mode d'emploi :
     //
     // Contrat :
     //
-    virtual bool Contains(const Point & p);
-    virtual void Move(int dx, int dy);
 
-//------------------------------------------------- Surcharge d'opérateurs
+
+//------------------------------------------------- Surcharge d'opï¿½rateurs
     Union & operator = ( const Union & unUnion );
     // Mode d'emploi :
     //
@@ -55,11 +52,17 @@ public:
     // Contrat :
     //
 
-    Union ( string aName, vector<Shape*> aVector );
+    Union ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
+
+    Union (std::string aName, std::vector<Shape*> vect);
+        // Mode d'emploi :
+        //
+        // Contrat :
+        //
 
     virtual ~Union ( );
     // Mode d'emploi :
@@ -70,25 +73,25 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
 private:
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- Mï¿½thodes privï¿½es
 
 protected:
-//----------------------------------------------------- Attributs protégés
+//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 private:
-//------------------------------------------------------- Attributs privés
+//------------------------------------------------------- Attributs privï¿½s
 
 //---------------------------------------------------------- Classes amies
 
-//-------------------------------------------------------- Classes privées
+//-------------------------------------------------------- Classes privï¿½es
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privï¿½s
 
 };
 
-//----------------------------------------- Types dépendants de <Union>
+//----------------------------------------- Types dï¿½pendants de <Union>
 
-#endif // UNION_H
+#endif // Union_H

@@ -155,8 +155,9 @@ Polygone::~Polygone ( )
 #endif
 } //----- Fin de ~Polygone
 
-Polygone::Polygone (string aName, int p[], int size  ):Shape(aName)
+Polygone::Polygone (string aName, int p[], int size  ):SingleShape(aName)
 {
+	type="PC";
 	for(int i=0; i<size; i+=2)
 	{
 		points.push_back(Point(p[i], p[i+1]));

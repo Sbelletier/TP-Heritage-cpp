@@ -10,8 +10,8 @@
 #define POLYGONE_H
 
 //--------------------------------------------------- Interfaces utilis�es
-#include "Shape.h"
 #include "Point.h"
+#include "SingleShape.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -22,13 +22,13 @@
 //
 //------------------------------------------------------------------------
 
-class Polygone : public Shape
+class Polygone : public SingleShape
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- M�thodes publiques
-    std::string const type = "Polygon";
+
     static bool convex(int p[], int size);
 	virtual bool Contains(const Point & p);
     // Mode d'emploi :

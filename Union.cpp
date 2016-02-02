@@ -1,15 +1,16 @@
 /*************************************************************************
                            Union  -  description
                              -------------------
-    début                : ${date}
+<<<<<<< HEAD
+    dï¿½but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <Union> (fichier ${file_name}) --
+//---------- Rï¿½alisation de la classe <Union> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systï¿½me
 using namespace std;
 #include <iostream>
 
@@ -20,93 +21,47 @@ using namespace std;
 
 //---------------------------------------------------- Variables de classe
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privï¿½s
 
 
 //----------------------------------------------------------------- PUBLIC
 //-------------------------------------------------------- Fonctions amies
 
-//----------------------------------------------------- Méthodes publiques
-// type Union::Méthode ( liste de paramètres )
-// Algorithme :
-//
-//{
-//} //----- Fin de Méthode
-
-
+//----------------------------------------------------- Mï¿½thodes publiques
 bool Union::Contains(const Point & p)
-{
-    for( i = 0; i < shapes.size(); i++ )
-    {
-        if ( shapes->Contains(p) )
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-void Union::Move(int dx, int dy)
-{
-    for( i = 0; i < shapes.size(); i++ )
-    {
-        shapes[i]->move(dx, dy);
-    }
-}
-
-
-//------------------------------------------------- Surcharge d'opérateurs
-Union & Union::operator = ( const Union & unUnion )
 // Algorithme :
 //
 {
+	bool contains=false;
+	int i=0;
+	while(!contains && i<shapes.size())
+	{
+		if(shapes[i]->Contains(p))
+		{
+			contains=true;
+		}
+		i++;
+	}
+	return contains;
+} //----- Fin de Mï¿½thode
 
-} //----- Fin de operator =
+
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Union::Union ( const Union & unUnion ):Shape(unUnion.name)
+
+
+Union::Union (std::string aName, std::vector<Shape*> vect):MultiShape(aName, vect)
 // Algorithme :
 //
 {
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Union>" << endl;
-#endif
-    delete[] shapes;
-    for( i = 0; i < unUnion.shapes.size(); i++)
-    {
-        if ( unUnion.shapes[i]->type == "Segment" )
-        {
-            shapes.push_back( new Segment( *(unUnion.shapes[i]) ) );
-        }
-        else if (unUnion.shapes[i]->type == "Union")
-        {
-            shapes.push_back( new Union( *(unUnion.shapes[i]) ));
-        }
-        else if (unUnion.shapes[i]->type == "Intersection")
-        {
-            shapes.push_back( new Intersection( *(unUnion.shapes[i]) ) );
-        }
-        else if (unUnion.shapes[i]->type == "Polygon")
-        {
-            shapes.push_back( new Polygone( *(unUnion.shapes[i]) ) );
-        }
-        else if (unUnion.shapes[i]->type == "Rectangle")
-        {
-            shapes.push_back( new Rectangle( *(unUnion.shapes[i]) ) );
-        }
-    }
-} //----- Fin de Union (constructeur de copie)
 
-
-Union::Union ( string aName, vector<Shape*> aVector )
-    :Shape(aName), shapes(aVector)
-// Algorithme :
-//
-{
+	type="OI";
 #ifdef MAP
     cout << "Appel au constructeur de <Union>" << endl;
 #endif
+
+
 } //----- Fin de Union
 
 
@@ -117,12 +72,13 @@ Union::~Union ( )
 #ifdef MAP
     cout << "Appel au destructeur de <Union>" << endl;
 #endif
-    delete [] shapes;
 } //----- Fin de ~Union
 
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- Mï¿½thodes privï¿½es
+
+

@@ -61,7 +61,7 @@ Segment & Segment::operator = ( const Segment & unSegment )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Segment::Segment ( const Segment & unSegment ):Shape(unSegment.name)
+Segment::Segment ( const Segment & unSegment ):SingleShape(unSegment.name)
 // Algorithme :
 //
 {
@@ -75,14 +75,14 @@ Segment::Segment ( const Segment & unSegment ):Shape(unSegment.name)
 
 
 Segment::Segment ( string aName, int* aPoints )
-	:Shape(aName)
+	:SingleShape(aName)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <Segment>" << endl;
 #endif
-
+    type="S";
 	points.push_back( Point( aPoints[0], aPoints[1] ));
 	points.push_back( Point( aPoints[2], aPoints[3] ));
 

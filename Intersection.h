@@ -1,7 +1,8 @@
 /*************************************************************************
                            Intersection  -  description
                              -------------------
-    début                : ${date}
+<<<<<<< HEAD
+    dï¿½but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
@@ -9,15 +10,15 @@
 #if ! defined ( INTERSECTION_H )
 #define INTERSECTION_H
 
-//--------------------------------------------------- Interfaces utilisées
-#include "Shape.h"
+//--------------------------------------------------- Interfaces utilisï¿½es
+#include "Point.h"
 #include "MultiShape.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Intersection>
+// Rï¿½le de la classe <Intersection>
 //
 //
 //------------------------------------------------------------------------
@@ -27,19 +28,16 @@ class Intersection : public MultiShape
 //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    std::string const type = "Intersection";
-    // type Méthode ( liste de paramètres );
+//----------------------------------------------------- Mï¿½thodes publiques
+
+	virtual bool Contains(const Point & p);
     // Mode d'emploi :
     //
     // Contrat :
     //
-    virtual bool Contains(const Point & p);
-    virtual void Move(int dx, int dy);
 
 
-
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opï¿½rateurs
     Intersection & operator = ( const Intersection & unIntersection );
     // Mode d'emploi :
     //
@@ -54,11 +52,17 @@ public:
     // Contrat :
     //
 
-    Intersection ( string aName, vector<Shape*> aVector );
+    Intersection ( );
     // Mode d'emploi :
     //
     // Contrat :
     //
+
+    Intersection (std::string aName, std::vector<Shape*> vect);
+        // Mode d'emploi :
+        //
+        // Contrat :
+        //
 
     virtual ~Intersection ( );
     // Mode d'emploi :
@@ -69,25 +73,24 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
 
 private:
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- Mï¿½thodes privï¿½es
 
 protected:
-//----------------------------------------------------- Attributs protégés
+//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 private:
-//------------------------------------------------------- Attributs privés
+//------------------------------------------------------- Attributs privï¿½s
 
 //---------------------------------------------------------- Classes amies
 
-//-------------------------------------------------------- Classes privées
+//-------------------------------------------------------- Classes privï¿½es
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privï¿½s
 
 };
 
-//----------------------------------------- Types dépendants de <Intersection>
 
 #endif // INTERSECTION_H
