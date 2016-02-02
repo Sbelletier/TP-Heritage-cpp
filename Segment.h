@@ -10,8 +10,8 @@
 #define SEGMENT_H
 
 //--------------------------------------------------- Interfaces utilisées
-#include "Shape.h"
 #include "Point.h"
+#include "SingleShape.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -22,13 +22,12 @@
 //
 //------------------------------------------------------------------------
 
-class Segment : public Shape
+class Segment : public SingleShape
 {
 //----------------------------------------------------------------- PUBLIC
 public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
-    string const type = "Segment";
 
 
     virtual bool Contains(const Point & p);

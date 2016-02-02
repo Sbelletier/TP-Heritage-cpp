@@ -11,7 +11,7 @@
 
 //--------------------------------------------------- Interfaces utilis�es
 #include "Point.h"
-#include "Shape.h"
+#include "SingleShape.h"
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
@@ -22,13 +22,12 @@
 //
 //------------------------------------------------------------------------
 
-class Rectangle : public Shape
+class Rectangle : public SingleShape
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- M�thodes publiques
-    std::string const type = "Rectangle";
 
 	virtual bool Contains(const Point & p);
     // Mode d'emploi :

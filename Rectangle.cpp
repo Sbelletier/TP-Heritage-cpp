@@ -57,12 +57,13 @@ Rectangle::Rectangle ( )
     cout << "Appel au constructeur de <Rectangle>" << endl;
 #endif
 } //----- Fin de Rectangle
-Rectangle::Rectangle ( std::string aName, int* aPoints):Shape(aName)
+Rectangle::Rectangle ( std::string aName, int* aPoints):SingleShape(aName)
 // Algorithme :
 //
 {
+	type="R";
 	points.push_back( Point( aPoints[0], aPoints[1] ));
-		points.push_back( Point( aPoints[2], aPoints[3] ));
+	points.push_back( Point( aPoints[2], aPoints[3] ));
 #ifdef MAP
     cout << "Appel au constructeur de <Rectangle>" << endl;
 #endif

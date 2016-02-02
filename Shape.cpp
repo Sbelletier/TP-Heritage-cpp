@@ -29,26 +29,7 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
-string Shape::print()
-{
-	string p=type+" "+name;
-	for(int i=0; i<points.size(); i++)
-	{
-		p+=" "+to_string(points[i].x)+" "+to_string(points[i].y);
-	}
-	p+="\r\n";
-	return p;
-}
 
-void Shape::Move(int dx, int dy)
-// Algorithme :
-//
-{
-	for(int i=0; i<points.size(); i++)
-	{
-		points[i].move(dx, dy);
-	}
-}
 
 string & Shape::getName()
 {
@@ -64,7 +45,7 @@ string & Shape::getName()
 
 //-------------------------------------------- Constructeurs - destructeur
 Shape::Shape ( const Shape & unShape )
-    :name(unShape.name), points(unShape.points)
+    :name(unShape.name), type(unShape.type)
 // Algorithme :
 //
 {

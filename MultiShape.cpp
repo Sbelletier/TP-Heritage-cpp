@@ -1,21 +1,23 @@
 /*************************************************************************
-                           Segment  -  description
+                           MultiShape  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <Segment> (fichier ${file_name}) --
+//---------- Réalisation de la classe <MultiShape> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
+
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "Segment.h"
-
+#include "MultiShape.h"
+using namespace std;
+#include "string.h"
+#include <sstream>
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -27,78 +29,69 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+string MultiShape::print()
+{
+	string p=type+" "+name;
+	for(int i=0; i<shapes.size(); i++)
+	{
+		p+=shapes[i]->print();
+	}
+	return p;
+}
 
-bool Segment::Contains(const Point & p)
+void MultiShape::Move(int dx, int dy)
 // Algorithme :
 //
 {
-
-	if( !(p.x>points[0].x && p.x>points[1].x) && !(p.x < points[0].x && p.x < points[1].x))
+	for(int i=0; i<shapes.size(); i++)
 	{
-		if(points[0].x!=points[1].x)
-		{
-			float coeff=(points[0].y-points[1].y)/(points[0].x-points[1].x);
-			int b=points[0].y-coeff*points[0].x;
-			return (p.x*coeff + b == p.y);
-		}
-		return !(p.y>points[0].y && p.y>points[1].y) && !(p.y < points[0].y && p.y < points[1].y);
+		shapes[i]->Move(dx, dy);
 	}
 
-	return false;
+}
 
-} //----- Fin de Méthode
 
+
+//----- Fin de Méthode
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Segment & Segment::operator = ( const Segment & unSegment )
-// Algorithme :
-//
-{
 
-	return *this;
-} //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Segment::Segment ( const Segment & unSegment ):SingleShape(unSegment.name)
-// Algorithme :
-//
-{
-	points.push_back(unSegment.points[1]);
-	points.push_back(unSegment.points[2]);
-
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Segment>" << endl;
-#endif
-} //----- Fin de Segment (constructeur de copie)
-
-
-Segment::Segment ( string aName, int* aPoints )
-	:SingleShape(aName)
+MultiShape::MultiShape ( const MultiShape & unMultiShape )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Segment>" << endl;
+    cout << "Appel au constructeur de copie de <MultiShape>" << endl;
 #endif
-    type="S";
-	points.push_back( Point( aPoints[0], aPoints[1] ));
-	points.push_back( Point( aPoints[2], aPoints[3] ));
+} //----- Fin de MultiShape (constructeur de copie)
 
 
-} //----- Fin de Segment
+MultiShape::MultiShape (std::string aName,  vector<Shape*> aShapeVec ):Shape(aName)
+// Algorithme :
+//
+{
+	for(int i=0; i<aShapeVec.size(); i++)
+	{
+		shapes.push_back(aShapeVec[i]);
+	}
+#ifdef MAP
+    cout << "Appel au constructeur de <MultiShape>" << endl;
+#endif
+} //----- Fin de MultiShape
 
 
-Segment::~Segment ( )
+MultiShape::~MultiShape ( )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Segment>" << endl;
+    cout << "Appel au destructeur de <MultiShape>" << endl;
 #endif
-//delete [] points;
-} //----- Fin de ~Segment
+} //----- Fin de ~MultiShape
 
 
 //------------------------------------------------------------------ PRIVE

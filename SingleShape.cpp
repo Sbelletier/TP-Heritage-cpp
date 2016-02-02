@@ -1,21 +1,23 @@
 /*************************************************************************
-                           Segment  -  description
+                           SingleShape  -  description
                              -------------------
     début                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
-//---------- Réalisation de la classe <Segment> (fichier ${file_name}) --
+//---------- Réalisation de la classe <SingleShape> (fichier ${file_name}) --
 
 //---------------------------------------------------------------- INCLUDE
 
 //-------------------------------------------------------- Include système
-using namespace std;
+
 #include <iostream>
 
 //------------------------------------------------------ Include personnel
-#include "Segment.h"
-
+#include "SingleShape.h"
+using namespace std;
+#include "string.h"
+#include <sstream>
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -27,78 +29,68 @@ using namespace std;
 //-------------------------------------------------------- Fonctions amies
 
 //----------------------------------------------------- Méthodes publiques
+string SingleShape::print()
+{
+	string p=type+" "+name;
+	for(int i=0; i<points.size(); i++)
+	{
+		p+=" "+to_string(points[i].x)+" "+to_string(points[i].y);
+	}
+	p+='\r\n';
+	return p;
+}
 
-bool Segment::Contains(const Point & p)
+void SingleShape::Move(int dx, int dy)
 // Algorithme :
 //
 {
-
-	if( !(p.x>points[0].x && p.x>points[1].x) && !(p.x < points[0].x && p.x < points[1].x))
+	for(int i=0; i<points.size(); i++)
 	{
-		if(points[0].x!=points[1].x)
-		{
-			float coeff=(points[0].y-points[1].y)/(points[0].x-points[1].x);
-			int b=points[0].y-coeff*points[0].x;
-			return (p.x*coeff + b == p.y);
-		}
-		return !(p.y>points[0].y && p.y>points[1].y) && !(p.y < points[0].y && p.y < points[1].y);
+		points[i].move(dx, dy);
 	}
+}
 
-	return false;
+string & SingleShape::getName()
+{
+	return name;
+}
 
-} //----- Fin de Méthode
-
+//----- Fin de Méthode
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-Segment & Segment::operator = ( const Segment & unSegment )
-// Algorithme :
-//
-{
 
-	return *this;
-} //----- Fin de operator =
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Segment::Segment ( const Segment & unSegment ):SingleShape(unSegment.name)
-// Algorithme :
-//
-{
-	points.push_back(unSegment.points[1]);
-	points.push_back(unSegment.points[2]);
-
-#ifdef MAP
-    cout << "Appel au constructeur de copie de <Segment>" << endl;
-#endif
-} //----- Fin de Segment (constructeur de copie)
-
-
-Segment::Segment ( string aName, int* aPoints )
-	:SingleShape(aName)
+SingleShape::SingleShape ( const SingleShape & unSingleShape )
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au constructeur de <Segment>" << endl;
+    cout << "Appel au constructeur de copie de <SingleShape>" << endl;
 #endif
-    type="S";
-	points.push_back( Point( aPoints[0], aPoints[1] ));
-	points.push_back( Point( aPoints[2], aPoints[3] ));
+} //----- Fin de SingleShape (constructeur de copie)
 
 
-} //----- Fin de Segment
-
-
-Segment::~Segment ( )
+SingleShape::SingleShape ( string aName ):Shape(aName)
 // Algorithme :
 //
 {
 #ifdef MAP
-    cout << "Appel au destructeur de <Segment>" << endl;
+    cout << "Appel au constructeur de <SingleShape>" << endl;
 #endif
-//delete [] points;
-} //----- Fin de ~Segment
+} //----- Fin de SingleShape
+
+
+SingleShape::~SingleShape ( )
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au destructeur de <SingleShape>" << endl;
+#endif
+} //----- Fin de ~SingleShape
 
 
 //------------------------------------------------------------------ PRIVE

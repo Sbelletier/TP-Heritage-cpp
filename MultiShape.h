@@ -1,7 +1,8 @@
 /*************************************************************************
                            MultiShape  -  description
                              -------------------
-    début                : ${date}
+<<<<<<< HEAD
+    dï¿½but                : ${date}
     copyright            : (C) ${year} par ${user}
 *************************************************************************/
 
@@ -9,15 +10,16 @@
 #if ! defined ( MULTISHAPE_H )
 #define MULTISHAPE_H
 
-//--------------------------------------------------- Interfaces utilisées
+
+//--------------------------------------------------- Interfaces utilisï¿½es
 #include "Shape.h"
-#include <vector>
+
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <MultiShape>
+// Role de la classe <MultiShape>
 //
 //
 //------------------------------------------------------------------------
@@ -27,15 +29,31 @@ class MultiShape : public Shape
 //----------------------------------------------------------------- PUBLIC
 
 public:
-//----------------------------------------------------- Méthodes publiques
-    // type Méthode ( liste de paramètres );
+//----------------------------------------------------- Mï¿½thodes publiques
+    // type Mï¿½thode ( liste de paramï¿½tres );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+    void Move(int dx, int dy);
     // Mode d'emploi :
     //
     // Contrat :
     //
 
+    virtual std::string print();
+    // Mode d'emploi :
+        //
+        // Contrat :
+        //
 
-//------------------------------------------------- Surcharge d'opérateurs
+    virtual bool Contains(const Point & p)=0;
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
+//------------------------------------------------- Surcharge d'opï¿½rateurs
     MultiShape & operator = ( const MultiShape & unMultiShape );
     // Mode d'emploi :
     //
@@ -50,7 +68,7 @@ public:
     // Contrat :
     //
 
-    MultiShape ( );
+    MultiShape (std::string aName,  std::vector<Shape*> aShapeVec );
     // Mode d'emploi :
     //
     // Contrat :
@@ -65,26 +83,34 @@ public:
 //------------------------------------------------------------------ PRIVE
 
 protected:
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- Mï¿½thodes protï¿½gï¿½es
+std::string name;
+std::vector<Shape*> shapes;
 
 private:
-//------------------------------------------------------- Méthodes privées
+//------------------------------------------------------- Mï¿½thodes privï¿½es
 
 protected:
-//----------------------------------------------------- Attributs protégés
-vector<Shape*> shapes;
+//----------------------------------------------------- Attributs protï¿½gï¿½s
 
 private:
-//------------------------------------------------------- Attributs privés
+//------------------------------------------------------- Attributs privï¿½s
 
 //---------------------------------------------------------- Classes amies
 
-//-------------------------------------------------------- Classes privées
+//-------------------------------------------------------- Classes privï¿½es
 
-//----------------------------------------------------------- Types privés
+//----------------------------------------------------------- Types privï¿½s
 
 };
 
-//----------------------------------------- Types dépendants de <MultiShape>
+//----------------------------------------- Types dï¿½pendants de <MultiShape>
 
 #endif // MULTISHAPE_H
+#ifndef MULTISHAPE_H_INCLUDED
+#define MULTISHAPE_H_INCLUDED
+
+
+
+#endif // MULTISHAPE_H_INCLUDED
+
