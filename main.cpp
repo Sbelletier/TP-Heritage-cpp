@@ -173,15 +173,17 @@ string* treatInput(string input)
 					wipe = it++;
 					delete wipe->second;
 				}
+				currHistory = new FullHistory("delete",mapShapes);
+                undo.push(currHistory);
 				mapShapes.clear();
-
 				ret[1]="OK\n";
 			}
 			else if ( splittedInput[0] == "DELETE" )
 			{
 				string name = splittedInput[1];
+				currHistory = new SingleHistory( "delete", mapShapes.find(name)->second );
+                undo.push(currHistory);
 				mapShapes.erase(name);
-
 				ret[1]="OK\n";
 			}
 			else if( splittedInput[0] == "S" )
@@ -195,7 +197,8 @@ string* treatInput(string input)
 				p[3] = atoi(splittedInput[5].c_str());
 				Segment* s= new Segment(name,p);
 				mapShapes.insert(pair<string,Shape*>(name, s));
-
+                currHistory = new SingleHistory("create", s);
+                undo.push(currHistory);
 				ret[1]="OK\n";
 			}
 
@@ -210,7 +213,8 @@ string* treatInput(string input)
 				p[3] = atoi(splittedInput[5].c_str());
 				Rectangle* s= new Rectangle(name,p);
 				mapShapes.insert(pair<string,Shape*>(name, s));
-
+                currHistory = new SingleHistory("create", s);
+                undo.push(currHistory);
 				ret[1]="OK\n";
 			}
 
@@ -224,7 +228,10 @@ string* treatInput(string input)
 				}
 				if(size>4 && Polygone::convex(p,size))
 				{
-					mapShapes.insert(pair<string,Shape*>(splittedInput[1], new Polygone(splittedInput[1] ,p, size)));
+				    Polygone* s = new Polygone(splittedInput[1] ,p, size);
+					mapShapes.insert(pair<string,Shape*>(splittedInput[1], s));
+					currHistory = new SingleHistory("create", s);
+                    undo.push(currHistory);
 					ret[1]="OK\n";
 				}
 				else
@@ -244,7 +251,10 @@ string* treatInput(string input)
 					nameShape = splittedInput[i];
 					//vec.push_back( new Shape( *(mapShapes[nameShape]) ) );
 				}
-				mapShapes.insert(pair<string,Shape*>(name, new Union(name,vec)));
+				Union* s = new Union(name,vec);
+				mapShapes.insert(pair<string,Shape*>(name, s));
+				currHistory = new SingleHistory("create", s);
+                undo.push(currHistory);
 				cout<<"OK"<<endl;
 
 			}
@@ -271,7 +281,10 @@ string* treatInput(string input)
 					}
 					k++;
 				}
-				mapShapes.insert(pair<string, Shape*>( name, new Intersection(name,vec) ) );
+				Intersection* s = new Intersection(name,vec);
+				mapShapes.insert(pair<string, Shape*>( name, s ) );
+				currHistory = new SingleHistory("create", s);
+                undo.push(currHistory);
 				cout<<"OK"<<endl;
 
 			}
@@ -318,17 +331,20 @@ string* treatInput(string input)
 
 			else if (splittedInput[0]=="SAVE")
 			{
-				ofstream fichier("backup.txt", ios::out);
+				ofstream fichier(splittedInput[1], ios::out);//j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
 				fichier << list(mapShapes);
 			}
 			else if(splittedInput[0]=="LOAD")
 			{
 				string input;
-				ifstream read("backup.txt");
+				currHistory = new FullHistory("create",mapShapes);
+                undo.push(currHistory);
+				ifstream read(splittedInput[1]);//j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
 				while (getline(read, input))
 				{
 					treatInput(input);
 				}
+
 
 			}
 	}
