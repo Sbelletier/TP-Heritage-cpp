@@ -76,7 +76,7 @@ private:
 
 protected:
 //----------------------------------------------------- Attributs protégés
-string command;//Kept for generalisation purposes
+
 map<string, Shape*> prevModel;
 
 

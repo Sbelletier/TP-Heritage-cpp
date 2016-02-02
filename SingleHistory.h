@@ -76,7 +76,6 @@ private:
 
 protected:
 //----------------------------------------------------- Attributs protégés
-string command;
 Shape* target;
 
 

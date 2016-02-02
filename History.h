@@ -55,7 +55,7 @@ public:
     // Contrat :
     //
 
-    History ( )
+    History ( string aCommand ):command(aCommand)
     {
 
     }
@@ -77,6 +77,7 @@ public:
 
 protected:
 //----------------------------------------------------- M�thodes prot�g�es
+string command;
 
 private:
 //------------------------------------------------------- M�thodes priv�es
