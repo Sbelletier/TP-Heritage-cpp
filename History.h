@@ -64,15 +64,6 @@ public:
     // Contrat :
     //
 
-    History (string a )
-        {
-
-        }
-        // Mode d'emploi :
-        //
-        // Contrat :
-        //
-
     virtual ~History ( )
     {
 

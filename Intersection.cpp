@@ -16,7 +16,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Intersection.h"
-
+#include <map>
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -36,14 +36,21 @@ bool Intersection::Contains(const Point & p)
 	int i=0;
 	while(contains && i<shapes.size())
 	{
-		if(shapes[i]->Contains(p))
+		if(!shapes[i]->Contains(p))
 		{
 			contains=false;
 		}
 		i++;
 	}
 	return contains;
-} //----- Fin de M�thode
+}
+Shape* Intersection::deepCopy()
+{
+	Shape* s=new Intersection(*this);
+	return s;
+}
+
+//----- Fin de M�thode
 
 
 
@@ -64,6 +71,10 @@ Intersection::Intersection (std::string aName, std::vector<Shape*> vect):MultiSh
 
 } //----- Fin de Intersection
 
+Intersection::Intersection ( const Intersection & unIntersection ):MultiShape(unIntersection)
+{
+	type="OI";
+}
 
 Intersection::~Intersection ( )
 // Algorithme :

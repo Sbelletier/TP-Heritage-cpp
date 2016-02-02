@@ -67,6 +67,11 @@ SingleShape::SingleShape ( const SingleShape & unSingleShape )
 // Algorithme :
 //
 {
+	name=unSingleShape.name;
+	for(int i=0; i<unSingleShape.points.size(); i++)
+	{
+		points.push_back(unSingleShape.points[i]);
+	}
 #ifdef MAP
     cout << "Appel au constructeur de copie de <SingleShape>" << endl;
 #endif

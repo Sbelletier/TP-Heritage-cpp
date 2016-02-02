@@ -52,6 +52,8 @@ public:
     // Contrat :
     //
 
+    Shape* deepCopy();
+
     Polygone ( );
     // Mode d'emploi :
     //

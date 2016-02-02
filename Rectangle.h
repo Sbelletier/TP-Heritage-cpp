@@ -35,7 +35,7 @@ public:
     // Contrat :
     //
 
-
+	virtual Shape* deepCopy();
 //------------------------------------------------- Surcharge d'op�rateurs
     Rectangle & operator = ( const Rectangle & unRectangle );
     // Mode d'emploi :
@@ -62,7 +62,6 @@ public:
         //
         // Contrat :
         //
-
     virtual ~Rectangle ( );
     // Mode d'emploi :
     //

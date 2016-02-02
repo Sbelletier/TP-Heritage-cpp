@@ -15,7 +15,7 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Rectangle.h"
-
+#include "SingleShape.h"
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -35,11 +35,16 @@ bool Rectangle::Contains(const Point & p)
 
 } //----- Fin de M�thode
 
+Shape* Rectangle::deepCopy()
+{
+	Shape* s=new Rectangle(*this);
+	return s;
+}
 
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Rectangle::Rectangle ( const Rectangle & unRectangle )
+Rectangle::Rectangle ( const Rectangle & unRectangle ):SingleShape(unRectangle)
 // Algorithme :
 //
 {

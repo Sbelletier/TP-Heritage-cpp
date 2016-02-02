@@ -52,7 +52,7 @@ void FullHistory::Clean()
         wipe = it++;
         delete wipe->second;
     }
-   // delete prevModel;
+   prevModel.clear();
 }
 
 
@@ -66,7 +66,7 @@ FullHistory & FullHistory::operator = ( const FullHistory & unFullHistory )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-FullHistory::FullHistory ( const FullHistory & unFullHistory )
+FullHistory::FullHistory ( const FullHistory & unFullHistory ):History(unFullHistory.command)
 // Algorithme :
 //
 {
@@ -78,7 +78,7 @@ FullHistory::FullHistory ( const FullHistory & unFullHistory )
 
 
 FullHistory::FullHistory (string type, map<string,Shape*> & model )
-    :command(type), prevModel(model)
+    :History(type), prevModel(model)
 // Algorithme :
 //
 {

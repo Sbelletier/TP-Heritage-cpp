@@ -16,7 +16,6 @@ using namespace std;
 
 //------------------------------------------------------ Include personnel
 #include "Union.h"
-
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -43,20 +42,29 @@ bool Union::Contains(const Point & p)
 		i++;
 	}
 	return contains;
-} //----- Fin de M�thode
+}
+Shape* Union::deepCopy()
+{
+	Shape* s=new Union(*this);
+	return s;
+}
+//----- Fin de M�thode
 
 
 
 
 //-------------------------------------------- Constructeurs - destructeur
 
-
+Union::Union ( const Union & unUnion ):MultiShape(unUnion)
+{
+	type="OR";
+}
 Union::Union (std::string aName, std::vector<Shape*> vect):MultiShape(aName, vect)
 // Algorithme :
 //
 {
 
-	type="OI";
+	type="OR";
 #ifdef MAP
     cout << "Appel au constructeur de <Union>" << endl;
 #endif

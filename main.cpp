@@ -244,49 +244,62 @@ string* treatInput(string input)
 			{
 				int size = splittedInput.size();
 				vector<Shape*> vec;
-				string nameShape;
 				string name = splittedInput[1];
-				for( int i = 2; i<size; i++)
+				bool fab=true;
+				int k=2;
+				while(k<splittedInput.size() && fab)
 				{
-					nameShape = splittedInput[i];
-
-					//vec.push_back( new Shape( *(mapShapes[nameShape]) ) );
+					if(mapShapes.find(splittedInput[k])!=mapShapes.end())
+					{
+						vec.push_back( (mapShapes[splittedInput[k]])->deepCopy());
+					}
+					else
+					{
+						fab=false;
+						ret[1]="ERR figure non trouvée\n";
+					}
+					k++;
 				}
-				Union* s = new Union(name,vec);
-				mapShapes.insert(pair<string,Shape*>(name, s));
-				currHistory = new SingleHistory("create", s);
-                undo.push(currHistory);
-				cout<<"OK"<<endl;
+
+                if(fab)
+			   {
+					Union* s = new Union(name,vec);
+					mapShapes.insert(pair<string,Shape*>(name, s));
+					currHistory = new SingleHistory("create", s);
+					undo.push(currHistory);
+					ret[1]="OK\n";
+			   }
 
 			}
 			else if( splittedInput[0] == "OI" )
 			{
 				int size = splittedInput.size();
 				vector<Shape*> vec;
-				string nameShape;
 				string name = splittedInput[1];
 				bool fab=true;
-				int i=0;
-				int k=0;
+				int k=2;
 				while(k<splittedInput.size() && fab)
 				{
-					if(mapShapes.find(splittedInput[k])==mapShapes.end())
+					if(mapShapes.find(splittedInput[k])!=mapShapes.end())
 					{
-						nameShape = splittedInput[i];
-						//vec.push_back( new Shape( *(mapShapes[nameShape]) ) );
+						vec.push_back( (mapShapes[splittedInput[k]])->deepCopy());
 					}
 					else
 					{
 						fab=false;
-						ret[1]="ERR";
+						ret[1]="ERR figure non trouvée\n";
 					}
 					k++;
 				}
-				Intersection* s = new Intersection(name,vec);
-				mapShapes.insert(pair<string, Shape*>( name, s ) );
-				currHistory = new SingleHistory("create", s);
-                undo.push(currHistory);
-				cout<<"OK"<<endl;
+
+                if(fab)
+                {
+                	Intersection* s = new Intersection(name,vec);
+					mapShapes.insert(pair<string, Shape*>( name, s ) );
+					currHistory = new SingleHistory("create", s);
+					undo.push(currHistory);
+					ret[1]="OK\n";
+                }
 
 			}
 
@@ -319,7 +332,7 @@ string* treatInput(string input)
 				int dx = atoi(splittedInput[2].c_str());
 				int dy = atoi(splittedInput[3].c_str());
 
-				//mapShapes[name]->Move(dx, dy);
+				mapShapes[name]->Move(dx, dy);
 
 				ret[1]="OK\n";
 			}
@@ -332,7 +345,7 @@ string* treatInput(string input)
 
 			else if (splittedInput[0]=="SAVE")
 			{
-				ofstream fichier(splittedInput[1], ios::out);//j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
+				ofstream fichier(splittedInput[1].c_str(), ios::out);//j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
 				fichier << list(mapShapes);
 			}
 			else if(splittedInput[0]=="LOAD")
@@ -340,8 +353,8 @@ string* treatInput(string input)
 				string input;
 				currHistory = new FullHistory("create",mapShapes);
                 undo.push(currHistory);
-				ifstream read(splittedInput[1]);//j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
-				while (getline(read, input))
+                ifstream fichier(splittedInput[1].c_str(), ios::in); //j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
+				while (getline(fichier, input))
 				{
 					treatInput(input);
 				}

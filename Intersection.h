@@ -35,7 +35,7 @@ public:
     //
     // Contrat :
     //
-
+	virtual Shape* deepCopy();
 
 //------------------------------------------------- Surcharge d'op�rateurs
     Intersection & operator = ( const Intersection & unIntersection );

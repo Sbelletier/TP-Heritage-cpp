@@ -46,7 +46,15 @@ bool Segment::Contains(const Point & p)
 
 	return false;
 
-} //----- Fin de Méthode
+}
+
+Shape* Segment::deepCopy()
+{
+	Shape* s=new Segment(*this);
+	return s;
+}
+
+//----- Fin de Méthode
 
 
 
@@ -61,13 +69,11 @@ Segment & Segment::operator = ( const Segment & unSegment )
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Segment::Segment ( const Segment & unSegment ):SingleShape(unSegment.name)
+Segment::Segment ( const Segment & unSegment ):SingleShape(unSegment)
 // Algorithme :
 //
 {
-	points.push_back(unSegment.points[1]);
-	points.push_back(unSegment.points[2]);
-
+		type="S";
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Segment>" << endl;
 #endif

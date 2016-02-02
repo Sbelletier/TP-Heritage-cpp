@@ -121,15 +121,23 @@ bool Polygone::Contains(const Point & p)
 		}
 	}
 	return contains;
-} //----- Fin de M�thode
+}
+Shape* Polygone::deepCopy()
+{
+	Shape* s=new Polygone(*this);
+	return s;
+}
+
+//----- Fin de M�thode
 
 
 
 //-------------------------------------------- Constructeurs - destructeur
-Polygone::Polygone ( const Polygone & unPolygone )
+Polygone::Polygone ( const Polygone & unPolygone ):SingleShape(unPolygone)
 // Algorithme :
 //
 {
+	type="PC";
 #ifdef MAP
     cout << "Appel au constructeur de copie de <Polygone>" << endl;
 #endif

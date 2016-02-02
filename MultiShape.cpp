@@ -18,6 +18,7 @@
 using namespace std;
 #include "string.h"
 #include <sstream>
+#include <map>
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -31,11 +32,12 @@ using namespace std;
 //----------------------------------------------------- Méthodes publiques
 string MultiShape::print()
 {
-	string p=type+" "+name;
+	string p="#\n";
 	for(int i=0; i<shapes.size(); i++)
 	{
 		p+=shapes[i]->print();
 	}
+	p="\n"+type+" "+name;
 	return p;
 }
 
@@ -51,7 +53,6 @@ void MultiShape::Move(int dx, int dy)
 }
 
 
-
 //----- Fin de Méthode
 
 
@@ -60,10 +61,14 @@ void MultiShape::Move(int dx, int dy)
 
 
 //-------------------------------------------- Constructeurs - destructeur
-MultiShape::MultiShape ( const MultiShape & unMultiShape )
+MultiShape::MultiShape ( const MultiShape & unMultiShape ):Shape(unMultiShape.name)
 // Algorithme :
 //
 {
+	for(int i=0; i<unMultiShape.shapes.size(); i++)
+	{
+		shapes.push_back(unMultiShape.shapes[i]);
+	}
 #ifdef MAP
     cout << "Appel au constructeur de copie de <MultiShape>" << endl;
 #endif

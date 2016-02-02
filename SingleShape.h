@@ -34,6 +34,8 @@ class SingleShape : public Shape
 public:
 //----------------------------------------------------- Méthodes publiques
 
+	virtual Shape* deepCopy()=0;
+
    virtual void Move(int dx, int dy);
 
     // Mode d'emploi :

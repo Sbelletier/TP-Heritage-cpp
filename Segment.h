@@ -29,7 +29,7 @@ public:
 //----------------------------------------------------- Méthodes publiques
     // type Méthode ( liste de paramètres );
 
-
+	virtual Shape* deepCopy();
     virtual bool Contains(const Point & p);
     // Mode d'emploi :
     //

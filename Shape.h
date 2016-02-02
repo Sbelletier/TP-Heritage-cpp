@@ -47,7 +47,7 @@ public:
        // Contrat :
        //
 
-
+   virtual Shape* deepCopy()=0;
    virtual std::string print()=0;
    // Mode d'emploi :
        //

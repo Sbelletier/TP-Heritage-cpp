@@ -47,6 +47,8 @@ public:
         // Contrat :
         //
 
+    virtual Shape* deepCopy()=0;
+
     virtual bool Contains(const Point & p)=0;
     // Mode d'emploi :
     //
