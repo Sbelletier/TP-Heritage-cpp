@@ -242,6 +242,7 @@ string* treatInput(string input)
 				for( int i = 2; i<size; i++)
 				{
 					nameShape = splittedInput[i];
+
 					//vec.push_back( new Shape( *(mapShapes[nameShape]) ) );
 				}
 				mapShapes.insert(pair<string,Shape*>(name, new Union(name,vec)));
