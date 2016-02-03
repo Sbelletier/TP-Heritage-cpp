@@ -15,10 +15,10 @@
 
 //------------------------------------------------------ Include personnel
 #include "MultiShape.h"
-using namespace std;
 #include "string.h"
 #include <sstream>
 #include <map>
+using namespace std;
 //------------------------------------------------------------- Constantes
 
 //---------------------------------------------------- Variables de classe
@@ -33,11 +33,16 @@ using namespace std;
 string MultiShape::print()
 {
 	string p="#\n";
-	for(int i=0; i<shapes.size(); i++)
+	for(unsigned int i=0; i<shapes.size(); i++)
 	{
 		p+=shapes[i]->print();
 	}
-	p="\n"+type+" "+name;
+	p+="#\n"+type+" "+getName();
+	for(unsigned int i=0; i<shapes.size(); i++)
+	{
+		p+=" "+shapes[i]->getName();
+	}
+	p+="\n";
 	return p;
 }
 
@@ -45,7 +50,7 @@ void MultiShape::Move(int dx, int dy)
 // Algorithme :
 //
 {
-	for(int i=0; i<shapes.size(); i++)
+	for(unsigned int i=0; i<shapes.size(); i++)
 	{
 		shapes[i]->Move(dx, dy);
 	}
@@ -61,17 +66,17 @@ void MultiShape::Move(int dx, int dy)
 
 
 //-------------------------------------------- Constructeurs - destructeur
-MultiShape::MultiShape ( const MultiShape & unMultiShape ):Shape(unMultiShape.name)
+MultiShape::MultiShape ( const MultiShape & unMultiShape ):Shape(unMultiShape)
 // Algorithme :
 //
 {
-	for(int i=0; i<unMultiShape.shapes.size(); i++)
-	{
-		shapes.push_back(unMultiShape.shapes[i]);
-	}
 #ifdef MAP
     cout << "Appel au constructeur de copie de <MultiShape>" << endl;
 #endif
+    for(unsigned int i=0; i<unMultiShape.shapes.size(); i++)
+	{
+		shapes.push_back(unMultiShape.shapes[i]);
+	}
 } //----- Fin de MultiShape (constructeur de copie)
 
 
@@ -79,13 +84,13 @@ MultiShape::MultiShape (std::string aName,  vector<Shape*> aShapeVec ):Shape(aNa
 // Algorithme :
 //
 {
-	for(int i=0; i<aShapeVec.size(); i++)
-	{
-		shapes.push_back(aShapeVec[i]);
-	}
 #ifdef MAP
     cout << "Appel au constructeur de <MultiShape>" << endl;
 #endif
+    for(unsigned int i=0; i<aShapeVec.size(); i++)
+	{
+		shapes.push_back(aShapeVec[i]);
+	}
 } //----- Fin de MultiShape
 
 
@@ -96,6 +101,14 @@ MultiShape::~MultiShape ( )
 #ifdef MAP
     cout << "Appel au destructeur de <MultiShape>" << endl;
 #endif
+    for(unsigned int i=0; i<shapes.size(); i++)
+    {
+    	if(shapes[i]!=0)
+    	{
+			delete shapes[i];
+			shapes[i]=0;
+    	}
+    }
 } //----- Fin de ~MultiShape
 
 

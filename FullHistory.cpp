@@ -43,18 +43,6 @@ History* FullHistory::Cancel(map<string,Shape*> & model)
     return opposite;
 }
 
-void FullHistory::Clean()
-{
-    map<string,Shape*>::iterator it = prevModel.begin();
-    map<string,Shape*>::iterator wipe;
-    while( it != prevModel.end() )
-    {
-        wipe = it++;
-        delete wipe->second;
-    }
-   prevModel.clear();
-}
-
 
 //------------------------------------------------- Surcharge d'op�rateurs
 FullHistory & FullHistory::operator = ( const FullHistory & unFullHistory )
@@ -95,6 +83,14 @@ FullHistory::~FullHistory ( )
 #ifdef MAP
     cout << "Appel au destructeur de <FullHistory>" << endl;
 #endif
+    map<string,Shape*>::iterator it = prevModel.begin();
+	map<string,Shape*>::iterator wipe;
+	while( it != prevModel.end() )
+	{
+		wipe = it++;
+		delete wipe->second;
+		wipe->second=0;
+	}
 } //----- Fin de ~FullHistory
 
 

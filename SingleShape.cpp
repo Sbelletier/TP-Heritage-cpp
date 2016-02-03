@@ -63,11 +63,10 @@ string & SingleShape::getName()
 
 
 //-------------------------------------------- Constructeurs - destructeur
-SingleShape::SingleShape ( const SingleShape & unSingleShape )
+SingleShape::SingleShape ( const SingleShape & unSingleShape ):Shape(unSingleShape)
 // Algorithme :
 //
 {
-	name=unSingleShape.name;
 	for(int i=0; i<unSingleShape.points.size(); i++)
 	{
 		points.push_back(unSingleShape.points[i]);

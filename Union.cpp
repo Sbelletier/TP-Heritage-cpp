@@ -63,7 +63,6 @@ Union::Union (std::string aName, std::vector<Shape*> vect):MultiShape(aName, vec
 // Algorithme :
 //
 {
-
 	type="OR";
 #ifdef MAP
     cout << "Appel au constructeur de <Union>" << endl;

@@ -33,25 +33,13 @@ using namespace std;
 #include "History.h"
 #include "SingleHistory.h"
 #include "FullHistory.h"
-
+#include <set>
 //------------------------------------------------------ Declaration des fonctions
 
-string list(map<string, Shape*> & mapShapes)
-{
-	map<string, Shape*>::iterator it;
-	string list="";
-	for(it=mapShapes.begin(); it!=mapShapes.end(); it++)
-	{
-		list+=it->second->print();
-
-	}
-	return list;
-}
-string* treatInput(string input);
-void exportModel(string fileName, map<string, Shape*> & mapShapes);//OPTION SI COUT
-void importModel(string fileName, map<string, Shape*> & mapShapes);
-//void fillMultiShape(MultiShape & toFill, fstream & aStream);//used by import, potentially in a recursive way
-map<string, Shape*> mapShapes;
+string list(map<string, Shape*> & mapShapes);
+string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shape*> & mapShapes);
+set<Shape*> createdShape;
+map<string, Shape*> Shapes;
 map<string, Shape*>::iterator it;
 map<string, Shape*>::iterator wipe;
 stack<History*> undo;
@@ -60,21 +48,13 @@ History* currHistory;
 //------------------------------------------------------ Main
 int main(int argc, char **argv)
 {
-	//------------------------------------------------------ Declaration des variables
-
-
-	//History
-
-
 	string loop = "1";
 	string input;
-
-	//------------------------------------------------------ Input
 	while( loop=="1" )
 	{
 		vector<string> splittedInput;
 		getline(cin, input);
-		string * ret=treatInput(input);
+		string * ret=treatInput(input, Shapes, Shapes);
 		loop=ret[0];
 		cout<<ret[1];
 		delete[] ret;
@@ -82,21 +62,21 @@ int main(int argc, char **argv)
 
 	//memory cleaning
 	//erasing the contents of the model
-	it = mapShapes.begin();
-	while( it != mapShapes.end() )
+	set<Shape*>::iterator a=createdShape.begin();
+	while( a != createdShape.end() )
 	{
-		wipe = it++;
-		delete wipe->second;
+		delete *a;
+		a++;
 	}
 	//erasing the history
 	while ( !redo.empty() )
     {
-        redo.top()->Clean();//avoids memory leaks
+        delete redo.top();
         redo.pop();
     }
     while ( !undo.empty() )
     {
-        undo.top()->Clean();//avoids memory leaks
+       	delete undo.top();
         undo.pop();
     }
 
@@ -105,7 +85,7 @@ int main(int argc, char **argv)
 }
 
 //------------------------------------------------------ Definition des fonctions
-string* treatInput(string input)
+string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shape*> & mapShapes)
 {
 
 	string* ret=new string[2];
@@ -129,11 +109,13 @@ string* treatInput(string input)
 			{
 				currHistory = undo.top();
 				redo.push( currHistory->Cancel(mapShapes) );
-				cout << "OK" << endl;
+				delete currHistory;
+				undo.pop();
+				ret[1]="OK\n";
 			}
 			else
 			{
-				cout << "NOTHING TO UNDO" << endl;
+				ret[1]="NOTHING TO UNDO\n";
 			}
 		}
 		else
@@ -142,55 +124,72 @@ string* treatInput(string input)
 			{
 				currHistory = redo.top();
 				undo.push( currHistory->Cancel(mapShapes) );
-				cout << "OK" << endl;
+				delete currHistory;
+				redo.pop();
+				ret[1]="OK\n";
 			}
 			else
 			{
-				cout << "NOTHING TO REDO" << endl;
+				ret[1]="NOTHING TO REDO\n";
 			}
 		}
 	}
 	else
 	{
+
+
+		if ( splittedInput[0] == "EXIT" )
+		{
+			ret[0]="0";
+
+			ret[1]="BYE\n";
+		}
+
+		else
+		{
+
 			while ( !redo.empty() )
 			{
-				redo.top()->Clean();//avoids memory leaks
 				redo.pop();
 			}
-
-			if ( splittedInput[0] == "EXIT" )
-			{
-				ret[0]="0";
-
-				ret[1]="BYE\n";
-			}
-			else if ( splittedInput[0] == "CLEAR\r\n" )
+			if ( splittedInput[0] == "CLEAR" )
 			{
 				it = mapShapes.begin();
-
-				while( it != mapShapes.end() )
-				{
-					wipe = it++;
-					delete wipe->second;
-				}
 				currHistory = new FullHistory("delete",mapShapes);
-                undo.push(currHistory);
+				undo.push(currHistory);
 				mapShapes.clear();
 				ret[1]="OK\n";
 			}
 			else if ( splittedInput[0] == "DELETE" )
 			{
-				for( i=1; i<splittedInput.size(); i++ )
+
+				bool del=true;
+				int p=1;
+				while(p<splittedInput.size() && del)
 				{
-					string name = splittedInput[i];
-					currHistory = new SingleHistory( "delete", mapShapes.find(name)->second );
-					if ( mapShapes.erase(name)== 1 )
+					if(mapShapes.find(splittedInput[p])==mapShapes.end())
 					{
-						undo.push(currHistory);//on ne push que si la target existe
+						del=false;
 					}
-					
+					p++;
 				}
-				ret[1]="OK\n";
+				if(del)
+				{
+					ret[1]="OK\n";
+					currHistory = new FullHistory("create", mapShapes);
+					undo.push(currHistory);
+					for(int i=0; i<splittedInput.size(); i++)
+					{
+						if(mapShapes.find(splittedInput[i])!=mapShapes.end())
+						{
+							mapShapes.erase(splittedInput[i]);
+						}
+					}
+				}
+				else
+				{
+					ret[1]="ERR\n";
+				}
 			}
 			else if( splittedInput[0] == "S" )
 			{
@@ -202,9 +201,11 @@ string* treatInput(string input)
 				p[2] = atoi(splittedInput[4].c_str());
 				p[3] = atoi(splittedInput[5].c_str());
 				Segment* s= new Segment(name,p);
+				createdShape.insert(s);
 				mapShapes.insert(pair<string,Shape*>(name, s));
-                currHistory = new SingleHistory("create", s);
-                undo.push(currHistory);
+				createdShape.insert(s);
+				currHistory = new SingleHistory("create", s);
+				undo.push(currHistory);
 				ret[1]="OK\n";
 			}
 
@@ -218,9 +219,11 @@ string* treatInput(string input)
 				p[2] = atoi(splittedInput[4].c_str());
 				p[3] = atoi(splittedInput[5].c_str());
 				Rectangle* s= new Rectangle(name,p);
+				createdShape.insert(s);
 				mapShapes.insert(pair<string,Shape*>(name, s));
-                currHistory = new SingleHistory("create", s);
-                undo.push(currHistory);
+				createdShape.insert(s);
+				currHistory = new SingleHistory("create", s);
+				undo.push(currHistory);
 				ret[1]="OK\n";
 			}
 
@@ -234,15 +237,16 @@ string* treatInput(string input)
 				}
 				if(size>4 && Polygone::convex(p,size))
 				{
-				    Polygone* s = new Polygone(splittedInput[1] ,p, size);
+					Polygone* s = new Polygone(splittedInput[1] ,p, size);
+					createdShape.insert(s);
 					mapShapes.insert(pair<string,Shape*>(splittedInput[1], s));
 					currHistory = new SingleHistory("create", s);
-                    undo.push(currHistory);
+					undo.push(currHistory);
 					ret[1]="OK\n";
 				}
 				else
 				{
-				cerr<<"Polynome is not convex"<<endl;
+				cerr<<"Polygone is not convex"<<endl;
 				}
 			}
 
@@ -255,9 +259,9 @@ string* treatInput(string input)
 				int k=2;
 				while(k<splittedInput.size() && fab)
 				{
-					if(mapShapes.find(splittedInput[k])!=mapShapes.end())
+					if(mapMult.find(splittedInput[k])!=mapMult.end())
 					{
-						vec.push_back( (mapShapes[splittedInput[k]])->deepCopy());
+						vec.push_back( (mapMult[splittedInput[k]])->deepCopy());
 					}
 					else
 					{
@@ -267,9 +271,10 @@ string* treatInput(string input)
 					k++;
 				}
 
-                if(fab)
+				if(fab)
 			   {
 					Union* s = new Union(name,vec);
+					createdShape.insert(s);
 					mapShapes.insert(pair<string,Shape*>(name, s));
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
@@ -286,9 +291,9 @@ string* treatInput(string input)
 				int k=2;
 				while(k<splittedInput.size() && fab)
 				{
-					if(mapShapes.find(splittedInput[k])!=mapShapes.end())
+					if(mapMult.find(splittedInput[k])!=mapMult.end())
 					{
-						vec.push_back( (mapShapes[splittedInput[k]])->deepCopy());
+						vec.push_back( (mapMult[splittedInput[k]])->deepCopy());
 					}
 					else
 					{
@@ -298,14 +303,15 @@ string* treatInput(string input)
 					k++;
 				}
 
-                if(fab)
-                {
-                	Intersection* s = new Intersection(name,vec);
+				if(fab)
+				{
+					Intersection* s = new Intersection(name,vec);
+					createdShape.insert(s);
 					mapShapes.insert(pair<string, Shape*>( name, s ) );
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
 					ret[1]="OK\n";
-                }
+				}
 
 			}
 
@@ -356,18 +362,47 @@ string* treatInput(string input)
 			}
 			else if(splittedInput[0]=="LOAD")
 			{
+
 				string input;
 				currHistory = new FullHistory("create",mapShapes);
-                undo.push(currHistory);
-                ifstream fichier(splittedInput[1].c_str(), ios::in); //j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
+				undo.push(currHistory);
+				ifstream fichier(splittedInput[1].c_str(), ios::in); //j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
 				while (getline(fichier, input))
 				{
-					treatInput(input);
+					if(input=="#")
+					{
+						map<string, Shape*> mapMulti;
+						string in;
+						getline(fichier, in);
+						while(in!="#")
+						{
+							treatInput(in, mapMulti, mapMulti);
+							getline(fichier, in);
+						}
+						getline(fichier, in);
+						treatInput(in, mapMulti, mapShapes);
+					}
+					else
+					{
+						treatInput(input,mapShapes, mapShapes);
+					}
+
 				}
-
-
 			}
+		}
 	}
 
 	return ret;
+}
+
+string list(map<string, Shape*> & mapShapes)
+{
+	map<string, Shape*>::iterator it;
+	string list="";
+	for(it=mapShapes.begin(); it!=mapShapes.end(); it++)
+	{
+		list+=it->second->print();
+
+	}
+	return list;
 }

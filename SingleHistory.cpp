@@ -51,10 +51,8 @@ History* SingleHistory::Cancel(map<string, Shape*> & model)
     return opposite;
 }
 
-void SingleHistory::Clean()
-{
-    delete target;
-}
+
+
 
 
 //------------------------------------------------- Surcharge d'op�rateurs
