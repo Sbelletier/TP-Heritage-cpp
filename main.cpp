@@ -65,6 +65,7 @@ int main(int argc, char **argv)
 	set<Shape*>::iterator a=createdShape.begin();
 	while( a != createdShape.end() )
 	{
+		cout<<"supression de "<<endl;
 		delete *a;
 		a++;
 	}
@@ -199,7 +200,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				p[2] = atoi(splittedInput[4].c_str());
 				p[3] = atoi(splittedInput[5].c_str());
 				Segment* s= new Segment(name,p);
-				if(createdShape.find(s)!=createdShape.end())
+				if(createdShape.find(s)==createdShape.end())
 				{
 					createdShape.insert(s);
 				}
@@ -220,7 +221,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				p[3] = atoi(splittedInput[5].c_str());
 				Rectangle* s= new Rectangle(name,p);
 				mapShapes.insert(pair<string,Shape*>(name, s));
-				if(createdShape.find(s)!=createdShape.end())
+				if(createdShape.find(s)==createdShape.end())
 				{
 					createdShape.insert(s);
 				}
@@ -240,7 +241,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				if(size>4 && Polygone::convex(p,size))
 				{
 					Polygone* s = new Polygone(splittedInput[1] ,p, size);
-					if(createdShape.find(s)!=createdShape.end())
+					if(createdShape.find(s)==createdShape.end())
 					{
 						createdShape.insert(s);
 					}
@@ -279,7 +280,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				if(fab)
 			   {
 					Union* s = new Union(name,vec);
-					if(createdShape.find(s)!=createdShape.end())
+					if(createdShape.find(s)==createdShape.end())
 					{
 						createdShape.insert(s);
 					}
@@ -314,7 +315,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				if(fab)
 				{
 					Intersection* s = new Intersection(name,vec);
-					if(createdShape.find(s)!=createdShape.end())
+					if(createdShape.find(s)==createdShape.end())
 					{
 						createdShape.insert(s);
 					}
@@ -363,7 +364,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 			else if(splittedInput[0] == "LIST")
 			{
 				string a=list(mapShapes);
-				cout<<a;
+				ret[1]=a;
 			}
 
 			else if (splittedInput[0]=="SAVE")
