@@ -111,6 +111,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				currHistory = undo.top();
 				redo.push( currHistory->Cancel(mapShapes) );
 				undo.pop();
+				delete currHistory;
 				ret[1]="OK\n";
 			}
 			else
@@ -125,6 +126,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				currHistory = redo.top();
 				undo.push( currHistory->Cancel(mapShapes) );
 				redo.pop();
+				delete currHistory;
 				ret[1]="OK\n";
 			}
 			else
