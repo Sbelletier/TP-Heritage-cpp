@@ -66,13 +66,18 @@ FullHistory::FullHistory ( const FullHistory & unFullHistory ):History(unFullHis
 
 
 FullHistory::FullHistory (string type, map<string,Shape*> & model )
-    :History(type), prevModel(model)
+    :History(type)
 // Algorithme :
 //
 {
 #ifdef MAP
     cout << "Appel au constructeur de <FullHistory>" << endl;
 #endif
+    map<string,Shape*>::iterator it=model.begin();
+    for(it=model.begin(); it!=model.end(); it++)
+    {
+    	prevModel.insert(pair<string, Shape*>(it->first, it->second));
+    }
 } //----- Fin de FullHistory
 
 
@@ -83,14 +88,6 @@ FullHistory::~FullHistory ( )
 #ifdef MAP
     cout << "Appel au destructeur de <FullHistory>" << endl;
 #endif
-    map<string,Shape*>::iterator it = prevModel.begin();
-	map<string,Shape*>::iterator wipe;
-	while( it != prevModel.end() )
-	{
-		wipe = it++;
-		delete wipe->second;
-		wipe->second=0;
-	}
 } //----- Fin de ~FullHistory
 
 
