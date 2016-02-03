@@ -109,7 +109,6 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 			{
 				currHistory = undo.top();
 				redo.push( currHistory->Cancel(mapShapes) );
-				delete currHistory;
 				undo.pop();
 				ret[1]="OK\n";
 			}
@@ -124,7 +123,6 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 			{
 				currHistory = redo.top();
 				undo.push( currHistory->Cancel(mapShapes) );
-				delete currHistory;
 				redo.pop();
 				ret[1]="OK\n";
 			}
@@ -201,9 +199,11 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				p[2] = atoi(splittedInput[4].c_str());
 				p[3] = atoi(splittedInput[5].c_str());
 				Segment* s= new Segment(name,p);
-				createdShape.insert(s);
+				if(createdShape.find(s)!=createdShape.end())
+				{
+					createdShape.insert(s);
+				}
 				mapShapes.insert(pair<string,Shape*>(name, s));
-				createdShape.insert(s);
 				currHistory = new SingleHistory("create", s);
 				undo.push(currHistory);
 				ret[1]="OK\n";
@@ -219,9 +219,11 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				p[2] = atoi(splittedInput[4].c_str());
 				p[3] = atoi(splittedInput[5].c_str());
 				Rectangle* s= new Rectangle(name,p);
-				createdShape.insert(s);
 				mapShapes.insert(pair<string,Shape*>(name, s));
-				createdShape.insert(s);
+				if(createdShape.find(s)!=createdShape.end())
+				{
+					createdShape.insert(s);
+				}
 				currHistory = new SingleHistory("create", s);
 				undo.push(currHistory);
 				ret[1]="OK\n";
@@ -238,7 +240,10 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				if(size>4 && Polygone::convex(p,size))
 				{
 					Polygone* s = new Polygone(splittedInput[1] ,p, size);
-					createdShape.insert(s);
+					if(createdShape.find(s)!=createdShape.end())
+					{
+						createdShape.insert(s);
+					}
 					mapShapes.insert(pair<string,Shape*>(splittedInput[1], s));
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
@@ -274,7 +279,10 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				if(fab)
 			   {
 					Union* s = new Union(name,vec);
-					createdShape.insert(s);
+					if(createdShape.find(s)!=createdShape.end())
+					{
+						createdShape.insert(s);
+					}
 					mapShapes.insert(pair<string,Shape*>(name, s));
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
@@ -306,7 +314,10 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				if(fab)
 				{
 					Intersection* s = new Intersection(name,vec);
-					createdShape.insert(s);
+					if(createdShape.find(s)!=createdShape.end())
+					{
+						createdShape.insert(s);
+					}
 					mapShapes.insert(pair<string, Shape*>( name, s ) );
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
