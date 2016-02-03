@@ -40,8 +40,6 @@ string list(map<string, Shape*> & mapShapes);
 string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shape*> & mapShapes);
 set<Shape*> createdShape;
 map<string, Shape*> Shapes;
-map<string, Shape*>::iterator it;
-map<string, Shape*>::iterator wipe;
 stack<History*> undo;
 stack<History*> redo;
 History* currHistory;
@@ -151,10 +149,12 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 
 			while ( !redo.empty() )
 			{
+				delete redo.top();
 				redo.pop();
 			}
 			if ( splittedInput[0] == "CLEAR" )
 			{
+				map<string, Shape*>::iterator it;
 				it = mapShapes.begin();
 				currHistory = new FullHistory("delete",mapShapes);
 				undo.push(currHistory);
