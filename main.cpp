@@ -180,10 +180,16 @@ string* treatInput(string input)
 			}
 			else if ( splittedInput[0] == "DELETE" )
 			{
-				string name = splittedInput[1];
-				currHistory = new SingleHistory( "delete", mapShapes.find(name)->second );
-                undo.push(currHistory);
-				mapShapes.erase(name);
+				for( i=1; i<splittedInput.size(); i++ )
+				{
+					string name = splittedInput[i];
+					currHistory = new SingleHistory( "delete", mapShapes.find(name)->second );
+					if ( mapShapes.erase(name)== 1 )
+					{
+						undo.push(currHistory);//on ne push que si la target existe
+					}
+					
+				}
 				ret[1]="OK\n";
 			}
 			else if( splittedInput[0] == "S" )
