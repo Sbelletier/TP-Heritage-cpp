@@ -379,6 +379,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 			{
 				ofstream fichier(splittedInput[1].c_str(), ios::out);//j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
 				fichier << list(mapShapes);
+				ret[1]="OK\n";
 			}
 			else if(splittedInput[0]=="LOAD")
 			{
@@ -403,6 +404,8 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 					}
 
 				}
+
+				ret[1]="OK\n";
 			}
 		}
 	}
