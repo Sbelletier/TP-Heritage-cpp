@@ -37,6 +37,7 @@ using namespace std;
 //------------------------------------------------------ Declaration des fonctions
 
 string list(map<string, Shape*> & mapShapes);
+void treatsharp(ifstream & fichier, map<string, Shape*> & mapShapes);
 string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shape*> & mapShapes);
 set<Shape*> createdShape;
 map<string, Shape*> Shapes;
@@ -64,7 +65,10 @@ int main(int argc, char **argv)
 	while( a != createdShape.end() )
 	{
 		cout<<"supression de "<<endl;
-		delete *a;
+		if(*a!=0)
+		{
+			delete *a;
+		}
 		a++;
 	}
 	//erasing the history
@@ -267,11 +271,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				int k=2;
 				while(k<splittedInput.size() && fab)
 				{
-					if(mapMult.find(splittedInput[k])!=mapMult.end())
-					{
-						vec.push_back( (mapMult[splittedInput[k]])->deepCopy());
-					}
-					else
+					if(mapMult.find(splittedInput[k])==mapMult.end())
 					{
 						fab=false;
 						ret[1]="ERR figure non trouvée\n";
@@ -281,6 +281,10 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 
 				if(fab)
 			   {
+					for(int i=2; i<splittedInput.size(); i++)
+					{
+						vec.push_back( (mapMult[splittedInput[i]])->deepCopy());
+					}
 					Union* s = new Union(name,vec);
 					if(createdShape.find(s)==createdShape.end())
 					{
@@ -302,11 +306,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				int k=2;
 				while(k<splittedInput.size() && fab)
 				{
-					if(mapMult.find(splittedInput[k])!=mapMult.end())
-					{
-						vec.push_back( (mapMult[splittedInput[k]])->deepCopy());
-					}
-					else
+					if(mapMult.find(splittedInput[k])==mapMult.end())
 					{
 						fab=false;
 						ret[1]="ERR figure non trouvée\n";
@@ -315,17 +315,23 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				}
 
 				if(fab)
-				{
+			   {
+					for(int i=2; i<splittedInput.size(); i++)
+					{
+						vec.push_back( (mapMult[splittedInput[i]])->deepCopy());
+					}
 					Intersection* s = new Intersection(name,vec);
 					if(createdShape.find(s)==createdShape.end())
 					{
 						createdShape.insert(s);
 					}
-					mapShapes.insert(pair<string, Shape*>( name, s ) );
+					mapShapes.insert(pair<string,Shape*>(name, s));
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
 					ret[1]="OK\n";
+
 				}
+
 
 			}
 
@@ -381,24 +387,19 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				currHistory = new FullHistory("create",mapShapes);
 				undo.push(currHistory);
 				ifstream fichier(splittedInput[1].c_str(), ios::in); //j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
+
+				int i=0;
 				while (getline(fichier, input))
 				{
 					if(input=="#")
 					{
-						map<string, Shape*> mapMulti;
-						string in;
-						getline(fichier, in);
-						while(in!="#")
-						{
-							treatInput(in, mapMulti, mapMulti);
-							getline(fichier, in);
-						}
-						getline(fichier, in);
-						treatInput(in, mapMulti, mapShapes);
+
+						treatsharp(fichier, mapShapes);
 					}
 					else
 					{
-						treatInput(input,mapShapes, mapShapes);
+						string * t=treatInput(input,mapShapes, mapShapes);
+						delete[] t;
 					}
 
 				}
@@ -408,7 +409,26 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 
 	return ret;
 }
+void treatsharp(ifstream & fichier, map<string, Shape*> & mapShapes)
+{
+	map<string, Shape*> mapMulti;
+	string in;
+	getline(fichier, in);
+	while(in!="\\")
+	{
+		if(in=="#")
+		{
+			treatsharp(fichier, mapMulti);
+		}
+		string* t=treatInput(in, mapMulti, mapMulti);
+		delete[] t;
+		getline(fichier, in);
+	}
+	getline(fichier, in);
+	string* t=treatInput(in, mapMulti, mapShapes);
+	delete[] t;
 
+}
 string list(map<string, Shape*> & mapShapes)
 {
 	map<string, Shape*>::iterator it;

@@ -37,7 +37,7 @@ string MultiShape::print()
 	{
 		p+=shapes[i]->print();
 	}
-	p+="#\n"+type+" "+getName();
+	p+="\\\n"+type+" "+getName();
 	for(unsigned int i=0; i<shapes.size(); i++)
 	{
 		p+=" "+shapes[i]->getName();
@@ -75,7 +75,7 @@ MultiShape::MultiShape ( const MultiShape & unMultiShape ):Shape(unMultiShape)
 #endif
     for(unsigned int i=0; i<unMultiShape.shapes.size(); i++)
 	{
-		shapes.push_back(unMultiShape.shapes[i]);
+		shapes.push_back(unMultiShape.shapes[i]->deepCopy());
 	}
 } //----- Fin de MultiShape (constructeur de copie)
 
