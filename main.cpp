@@ -64,7 +64,6 @@ int main(int argc, char **argv)
 	set<Shape*>::iterator a=createdShape.begin();
 	while( a != createdShape.end() )
 	{
-		cout<<"supression de "<<endl;
 		if(*a!=0)
 		{
 			delete *a;
@@ -118,7 +117,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 			}
 			else
 			{
-				ret[1]="NOTHING TO UNDO\n";
+				ret[1]="#NOTHING TO UNDO\n";
 			}
 		}
 		else
@@ -133,7 +132,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 			}
 			else
 			{
-				ret[1]="NOTHING TO REDO\n";
+				ret[1]="#NOTHING TO REDO\n";
 			}
 		}
 	}
@@ -198,67 +197,88 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 			}
 			else if( splittedInput[0] == "S" )
 			{
-				string name =splittedInput[1];
-
-				int p[4];
-				p[0] = atoi(splittedInput[2].c_str());
-				p[1]= atoi(splittedInput[3].c_str());
-				p[2] = atoi(splittedInput[4].c_str());
-				p[3] = atoi(splittedInput[5].c_str());
-				Segment* s= new Segment(name,p);
-				if(createdShape.find(s)==createdShape.end())
+				if(splittedInput.size()!=6)
 				{
-					createdShape.insert(s);
+					ret[1]="ERR\n";
 				}
-				mapShapes.insert(pair<string,Shape*>(name, s));
-				currHistory = new SingleHistory("create", s);
-				undo.push(currHistory);
-				ret[1]="OK\n";
-			}
-
-			else if( splittedInput[0] == "R" )
-			{
-				string name =splittedInput[1];
-
-				int p[4];
-				p[0] = atoi(splittedInput[2].c_str());
-				p[1]= atoi(splittedInput[3].c_str());
-				p[2] = atoi(splittedInput[4].c_str());
-				p[3] = atoi(splittedInput[5].c_str());
-				Rectangle* s= new Rectangle(name,p);
-				mapShapes.insert(pair<string,Shape*>(name, s));
-				if(createdShape.find(s)==createdShape.end())
+				else
 				{
-					createdShape.insert(s);
-				}
-				currHistory = new SingleHistory("create", s);
-				undo.push(currHistory);
-				ret[1]="OK\n";
-			}
+					string name =splittedInput[1];
 
-			else if( splittedInput[0] == "PC" )
-			{
-				int size=splittedInput.size()-2;
-				int p[size];
-				for(int i = 0; i<size; i++)
-				{
-					p[i]=atoi(splittedInput[i+2].c_str());
-				}
-				if(size>4 && Polygone::convex(p,size))
-				{
-					Polygone* s = new Polygone(splittedInput[1] ,p, size);
+					int p[4];
+					p[0] = atoi(splittedInput[2].c_str());
+					p[1]= atoi(splittedInput[3].c_str());
+					p[2] = atoi(splittedInput[4].c_str());
+					p[3] = atoi(splittedInput[5].c_str());
+					Segment* s= new Segment(name,p);
 					if(createdShape.find(s)==createdShape.end())
 					{
 						createdShape.insert(s);
 					}
-					mapShapes.insert(pair<string,Shape*>(splittedInput[1], s));
+					mapShapes.insert(pair<string,Shape*>(name, s));
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
 					ret[1]="OK\n";
 				}
+			}
+
+			else if( splittedInput[0] == "R" )
+			{
+				if(splittedInput.size()!=6)
+				{
+					ret[1]="ERR\n";
+				}
 				else
 				{
-				cerr<<"Polygone is not convex"<<endl;
+					string name =splittedInput[1];
+
+					int p[4];
+					p[0] = atoi(splittedInput[2].c_str());
+					p[1]= atoi(splittedInput[3].c_str());
+					p[2] = atoi(splittedInput[4].c_str());
+					p[3] = atoi(splittedInput[5].c_str());
+					Rectangle* s= new Rectangle(name,p);
+					mapShapes.insert(pair<string,Shape*>(name, s));
+					if(createdShape.find(s)==createdShape.end())
+					{
+						createdShape.insert(s);
+					}
+					currHistory = new SingleHistory("create", s);
+					undo.push(currHistory);
+					ret[1]="OK\n";
+				}
+			}
+
+			else if( splittedInput[0] == "PC" )
+			{
+				if(splittedInput.size()%2!=0)
+				{
+					ret[1]="ERR\n";
+				}
+				else
+				{
+					int size=splittedInput.size()-2;
+					int p[size];
+					for(int i = 0; i<size; i++)
+					{
+						p[i]=atoi(splittedInput[i+2].c_str());
+					}
+					if(size>4 && Polygone::convex(p,size))
+					{
+						Polygone* s = new Polygone(splittedInput[1] ,p, size);
+						if(createdShape.find(s)==createdShape.end())
+						{
+							createdShape.insert(s);
+						}
+						mapShapes.insert(pair<string,Shape*>(splittedInput[1], s));
+						currHistory = new SingleHistory("create", s);
+						undo.push(currHistory);
+						ret[1]="OK\n";
+					}
+					else
+					{
+					cerr<<"ERR Polygone is not convex"<<endl;
+					}
 				}
 			}
 
@@ -343,7 +363,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				int y = atoi(splittedInput[3].c_str());
 				if(mapShapes.find(name)==mapShapes.end())
 				{
-					ret[1]="NO\n";
+					ret[1]="Figure non trouvée\n";
 				}
 				else
 				{
@@ -377,35 +397,48 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 
 			else if (splittedInput[0]=="SAVE")
 			{
-				ofstream fichier(splittedInput[1].c_str(), ios::out);//j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
-				fichier << list(mapShapes);
-				ret[1]="OK\n";
+				if(splittedInput.size()!=2)
+				{
+					ofstream fichier(splittedInput[1].c_str(), ios::out);//j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
+					fichier << list(mapShapes);
+					ret[1]="OK\n";
+				}
+				else
+				{
+					ret[1]="ERR\n";
+				}
 			}
 			else if(splittedInput[0]=="LOAD")
 			{
-
-				string input;
-				currHistory = new FullHistory("create",mapShapes);
-				undo.push(currHistory);
-				ifstream fichier(splittedInput[1].c_str(), ios::in); //j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
-
-				int i=0;
-				while (getline(fichier, input))
+				if(splittedInput.size()>0)
 				{
-					if(input=="#")
-					{
+					string input;
+					currHistory = new FullHistory("create",mapShapes);
+					undo.push(currHistory);
+					ifstream fichier(splittedInput[1].c_str(), ios::in); //j'ai modifié cette ligne parce que load et save spécifient le fichier où effectuer l'opération
 
-						treatsharp(fichier, mapShapes);
-					}
-					else
+					int i=0;
+					while (getline(fichier, input))
 					{
-						string * t=treatInput(input,mapShapes, mapShapes);
-						delete[] t;
+						if(input=="#")
+						{
+
+							treatsharp(fichier, mapShapes);
+						}
+						else
+						{
+							string * t=treatInput(input,mapShapes, mapShapes);
+							delete[] t;
+						}
+
 					}
 
+					ret[1]="OK\n";
 				}
-
-				ret[1]="OK\n";
+			}
+			else
+			{
+				ret[1]="ERR\n";
 			}
 		}
 	}
