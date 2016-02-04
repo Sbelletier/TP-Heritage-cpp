@@ -1,0 +1,8 @@
+OK
+S seg 0 1 2 3
+OK
+S seg 1 0 3 2
+NO
+YES
+OK
+BYE

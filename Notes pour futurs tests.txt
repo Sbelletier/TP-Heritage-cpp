@@ -1,0 +1,23 @@
+Tests
+
+List  V|---> modèle vide
+
+Using list
+Segment  V     	|
+		|
+Rectangle V	| ---> creation, suppression, move, hit
+		|
+Polygone V	|
+
+
+Union		|
+		| ---> creation, suppression, move, hit, composite de composite
+Intersection	|
+
+Undo	|
+	| ---> effectuer, quand rien à faire
+Redo 	|
+
+Others
+
+Save/load | ---> effectuer

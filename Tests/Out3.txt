@@ -1,0 +1,8 @@
+OK
+R rec 0 2 3 0
+OK
+R rec 1 1 2 0
+NO
+YES
+OK
+BYE

@@ -1,0 +1,9 @@
+PC poly 0 2 3 2 3 0 0 0
+LIST
+MOVE poly 1 -1
+LIST
+HIT rec 0 0
+HIT rec 2 2
+DELETE poly
+LIST
+EXIT

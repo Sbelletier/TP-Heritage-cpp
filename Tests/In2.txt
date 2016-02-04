@@ -1,0 +1,9 @@
+S seg 0 1 2 3
+LIST
+MOVE seg 1 -1
+LIST
+HIT seg 0 0
+HIT seg 1 0
+DELETE seg
+LIST
+EXIT

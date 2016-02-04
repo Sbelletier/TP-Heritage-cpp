@@ -1,0 +1,9 @@
+R rec 0 2 3 0
+LIST
+MOVE rec 1 -1
+LIST
+HIT rec 0 0
+HIT rec 2 0
+DELETE rec
+LIST
+EXIT

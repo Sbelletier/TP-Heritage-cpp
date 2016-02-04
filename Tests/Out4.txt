@@ -1,0 +1,8 @@
+OK
+PC poly 0 2 3 2 3 0 0 0
+OK
+PC poly 1 1 4 1 4 -1 1 -1
+NO
+YES
+OK
+BYE
