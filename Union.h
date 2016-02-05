@@ -37,14 +37,6 @@ public:
     //
 	virtual Shape* deepCopy();
 
-//------------------------------------------------- Surcharge d'op�rateurs
-    Union & operator = ( const Union & unUnion );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
-
 //-------------------------------------------- Constructeurs - destructeur
     Union ( const Union & unUnion );
     // Mode d'emploi (constructeur de copie) :

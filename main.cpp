@@ -288,74 +288,88 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 
 		else if( splittedInput[0] == "OR" )
 		{
-			int size = splittedInput.size();
-			vector<Shape*> vec;
-			string name = splittedInput[1];
-			bool fab=true;
-			int k=2;
-			while(k<splittedInput.size() && fab)
+			if(splittedInput.size()>2)
 			{
-				if(mapMult.find(splittedInput[k])==mapMult.end())
+				int size = splittedInput.size();
+				vector<Shape*> vec;
+				string name = splittedInput[1];
+				bool fab=true;
+				int k=2;
+				while(k<splittedInput.size() && fab)
 				{
-					fab=false;
-					ret[1]="ERR\n";
+					if(mapMult.find(splittedInput[k])==mapMult.end())
+					{
+						fab=false;
+						ret[1]="ERR\n";
+					}
+					k++;
 				}
-				k++;
+
+				if(fab)
+				{
+					for(int i=2; i<splittedInput.size(); i++)
+					{
+						vec.push_back( (mapMult[splittedInput[i]])->deepCopy());
+					}
+					Union* s = new Union(name,vec);
+					if(createdShape.find(s)==createdShape.end())
+					{
+						createdShape.insert(s);
+					}
+					mapShapes.insert(pair<string,Shape*>(name, s));
+					currHistory = new SingleHistory("create", s);
+					undo.push(currHistory);
+					ret[1]="OK\n";
+				}
 			}
 
-			if(fab)
+			else
 			{
-				for(int i=2; i<splittedInput.size(); i++)
-				{
-					vec.push_back( (mapMult[splittedInput[i]])->deepCopy());
-				}
-				Union* s = new Union(name,vec);
-				if(createdShape.find(s)==createdShape.end())
-				{
-					createdShape.insert(s);
-				}
-				mapShapes.insert(pair<string,Shape*>(name, s));
-				currHistory = new SingleHistory("create", s);
-				undo.push(currHistory);
-				ret[1]="OK\n";
+				ret[1]="ERR\n";
 			}
 
 		}
 		else if( splittedInput[0] == "OI" )
 		{
-			int size = splittedInput.size();
-			vector<Shape*> vec;
-			string name = splittedInput[1];
-			bool fab=true;
-			int k=2;
-			while(k<splittedInput.size() && fab)
+			if(splittedInput.size()>2)
 			{
-				if(mapMult.find(splittedInput[k])==mapMult.end())
+				int size = splittedInput.size();
+				vector<Shape*> vec;
+				string name = splittedInput[1];
+				bool fab=true;
+				int k=2;
+				while(k<splittedInput.size() && fab)
 				{
-					fab=false;
-					ret[1]="ERR\n";
+					if(mapMult.find(splittedInput[k])==mapMult.end())
+					{
+						fab=false;
+						ret[1]="ERR\n";
+					}
+					k++;
 				}
-				k++;
-			}
 
-			if(fab)
+				if(fab)
+				{
+					for(int i=2; i<splittedInput.size(); i++)
+					{
+						vec.push_back( (mapMult[splittedInput[i]])->deepCopy());
+					}
+					Intersection* s = new Intersection(name,vec);
+					if(createdShape.find(s)==createdShape.end())
+					{
+						createdShape.insert(s);
+					}
+					mapShapes.insert(pair<string,Shape*>(name, s));
+					currHistory = new SingleHistory("create", s);
+					undo.push(currHistory);
+					ret[1]="OK\n";
+
+				}
+			}
+			else
 			{
-				for(int i=2; i<splittedInput.size(); i++)
-				{
-					vec.push_back( (mapMult[splittedInput[i]])->deepCopy());
-				}
-				Intersection* s = new Intersection(name,vec);
-				if(createdShape.find(s)==createdShape.end())
-				{
-					createdShape.insert(s);
-				}
-				mapShapes.insert(pair<string,Shape*>(name, s));
-				currHistory = new SingleHistory("create", s);
-				undo.push(currHistory);
-				ret[1]="OK\n";
-
+				ret[1]="ERR\n";
 			}
-
 
 		}
 

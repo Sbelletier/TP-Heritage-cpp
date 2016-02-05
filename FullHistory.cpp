@@ -44,15 +44,6 @@ History* FullHistory::Cancel(map<string,Shape*> & model)
 }
 
 
-//------------------------------------------------- Surcharge d'op�rateurs
-FullHistory & FullHistory::operator = ( const FullHistory & unFullHistory )
-// Algorithme :
-//
-{
-    //throw bad_function_call;//a history entry shouldn't be copied. it should be moved by reference or address
-} //----- Fin de operator =
-
-
 //-------------------------------------------- Constructeurs - destructeur
 FullHistory::FullHistory ( const FullHistory & unFullHistory ):History(unFullHistory.command)
 // Algorithme :

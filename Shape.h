@@ -68,13 +68,6 @@ public:
         //
 
 
-//------------------------------------------------- Surcharge d'opérateurs
-    Shape & operator = ( const Shape & unShape );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 //-------------------------------------------- Constructeurs - destructeur
 	virtual ~Shape ( );
 	   // Mode d'emploi :

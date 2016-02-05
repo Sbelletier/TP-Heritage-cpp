@@ -37,13 +37,6 @@ public:
     //
 	virtual Shape* deepCopy();
 
-//------------------------------------------------- Surcharge d'op�rateurs
-    Intersection & operator = ( const Intersection & unIntersection );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
     Intersection ( const Intersection & unIntersection );

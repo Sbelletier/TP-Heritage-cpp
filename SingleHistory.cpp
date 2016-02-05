@@ -51,20 +51,6 @@ History* SingleHistory::Cancel(map<string, Shape*> & model)
     return opposite;
 }
 
-
-
-
-
-//------------------------------------------------- Surcharge d'op�rateurs
-/*
-SingleHistory & SingleHistory::operator = ( const SingleHistory & unSingleHistory )
-// Algorithme :
-//
-{
-    throw bad_function_call;//a history entry shouldn't be copied. it should be moved by reference or address
-} //----- Fin de operator =
-*/
-
 //-------------------------------------------- Constructeurs - destructeur
 SingleHistory::SingleHistory ( const SingleHistory & unSingleHistory )
     :History( unSingleHistory.command)

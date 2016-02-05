@@ -58,15 +58,6 @@ Shape* Segment::deepCopy()
 
 
 
-//------------------------------------------------- Surcharge d'opérateurs
-Segment & Segment::operator = ( const Segment & unSegment )
-// Algorithme :
-//
-{
-
-	return *this;
-} //----- Fin de operator =
-
 
 //-------------------------------------------- Constructeurs - destructeur
 Segment::Segment ( const Segment & unSegment ):SingleShape(unSegment)

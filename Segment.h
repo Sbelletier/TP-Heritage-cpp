@@ -36,13 +36,6 @@ public:
     // Contrat :
     //
 
-//------------------------------------------------- Surcharge d'opérateurs
-    Segment & operator = ( const Segment & unSegment );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
     Segment ( const Segment & unSegment );

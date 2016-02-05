@@ -55,13 +55,6 @@ public:
     // Contrat :
     //
 
-//------------------------------------------------- Surcharge d'op�rateurs
-    MultiShape & operator = ( const MultiShape & unMultiShape );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 
 //-------------------------------------------- Constructeurs - destructeur
     MultiShape ( const MultiShape & unMultiShape );

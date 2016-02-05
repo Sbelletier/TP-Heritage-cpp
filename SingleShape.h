@@ -60,14 +60,6 @@ public:
         // Contrat :
         //
 
-
-//------------------------------------------------- Surcharge d'opérateurs
-    SingleShape & operator = ( const SingleShape & unSingleShape );
-    // Mode d'emploi :
-    //
-    // Contrat :
-    //
-
 //-------------------------------------------- Constructeurs - destructeur
 	virtual ~SingleShape ( );
 	   // Mode d'emploi :
