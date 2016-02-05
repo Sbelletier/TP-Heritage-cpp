@@ -1,0 +1,12 @@
+#NOTHING TO UNDO
+OK
+S seg 0 1 0 0
+OK
+OK
+S seg 0 1 0 0
+OK
+OK
+S seg 0 1 0 0
+OK
+#NOTHING TO REDO
+BYE

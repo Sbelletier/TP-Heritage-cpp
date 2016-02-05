@@ -1,0 +1,26 @@
+ERR
+OK
+OK
+OK
+#
+S s1 0 0 1 1
+S s2 0 0 1 -1
+\
+OI o s1 s2
+S s1 0 0 1 1
+S s2 0 0 1 -1
+OK
+#
+S s1 0 1 1 2
+S s2 0 1 1 0
+\
+OI o s1 s2
+S s1 0 0 1 1
+S s2 0 0 1 -1
+NO
+YES
+NO
+OK
+S s1 0 0 1 1
+S s2 0 0 1 -1
+BYE

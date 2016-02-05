@@ -1,0 +1,12 @@
+OR o
+S s1 0 0 1 1
+S s2 0 0 1 -1
+OR o s1 s2
+LIST
+MOVE o 0 1
+LIST
+HIT o 0 0
+HIT o 0 1
+HIT o 1 0
+DELETE o
+EXIT

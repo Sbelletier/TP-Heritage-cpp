@@ -1,0 +1,49 @@
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+OK
+#
+S s2 0 2 0 0
+S s3 0 2 0 0
+\
+OI i s2 s3
+#
+#
+S s2 0 2 0 0
+S s3 0 2 0 0
+\
+OI i s2 s3
+#
+S s1 0 1 0 0
+S s2 0 2 0 0
+\
+OR u s1 s2
+\
+OI oi i u
+#
+#
+S s1 0 1 0 0
+S s2 0 2 0 0
+\
+OR u s1 s2
+#
+S s2 0 2 0 0
+S s3 0 2 0 0
+\
+OI i s2 s3
+\
+OR oo u i
+S s1 0 1 0 0
+S s2 0 2 0 0
+S s3 0 2 0 0
+#
+S s1 0 1 0 0
+S s2 0 2 0 0
+\
+OR u s1 s2
+

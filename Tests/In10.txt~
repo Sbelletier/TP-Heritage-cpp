@@ -1,0 +1,12 @@
+S s1 0 1 0 0
+S s2 0 2 0 0
+S s3 0 2 0 0
+OR u s1 s2
+OI i s2 s3
+OR oo u i
+OI oi i u
+CLEAR
+LIST
+UNDO
+LIST
+

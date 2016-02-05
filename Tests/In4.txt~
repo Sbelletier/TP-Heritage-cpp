@@ -4,7 +4,7 @@ LIST
 MOVE poly 1 -1
 LIST
 HIT poly 0 0
-HIT poly 2 0
+HIT poly 2 2
 DELETE poly
 LIST
 EXIT
