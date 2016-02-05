@@ -153,7 +153,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 	{
 		ret[0]="0";
 
-		ret[1]="BYE\n";
+		ret[1]="BYE\r\n";
 	}
 
 	else
