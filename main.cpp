@@ -102,7 +102,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 		index= input.find(' ');
 	}
 	splittedInput.push_back(input);
-	if(splittedInput[0]=="R" || splittedInput[0]=="S" || splittedInput[0]=="P" || splittedInput[0]=="OR" || splittedInput[0]=="S" || splittedInput[0]=="OI")
+	if(splittedInput[0]=="R" || splittedInput[0]=="S" || splittedInput[0]=="P" || splittedInput[0]=="OR" || splittedInput[0]=="LOAD" || splittedInput[0]=="OI")
 	{
 		while ( !redo.empty() )
 		{
@@ -116,7 +116,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 		if( !undo.empty() )
 		{
 			currHistory = undo.top();
-			currHistory->Cancel(mapShapes) ;
+			redo.push(currHistory->Cancel(mapShapes)) ;
 			undo.pop();
 			delete currHistory;
 			ret[1]="OK\n";
@@ -267,7 +267,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				{
 					p[i]=atoi(splittedInput[i+2].c_str());
 				}
-				if(size>4 && Polygone::convex(p,size))
+				if(size>5 && Polygone::convex(p,size))
 				{
 					Polygone* s = new Polygone(splittedInput[1] ,p, size);
 					if(createdShape.find(s)==createdShape.end())
@@ -298,7 +298,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				if(mapMult.find(splittedInput[k])==mapMult.end())
 				{
 					fab=false;
-					ret[1]="ERR figure non trouvée\n";
+					ret[1]="ERR\n";
 				}
 				k++;
 			}
@@ -333,7 +333,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				if(mapMult.find(splittedInput[k])==mapMult.end())
 				{
 					fab=false;
-					ret[1]="ERR figure non trouvée\n";
+					ret[1]="ERR\n";
 				}
 				k++;
 			}
@@ -367,7 +367,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 			int y = atoi(splittedInput[3].c_str());
 			if(mapShapes.find(name)==mapShapes.end())
 			{
-				ret[1]="Figure non trouvée\n";
+				ret[1]="ERR\n";
 			}
 			else
 			{

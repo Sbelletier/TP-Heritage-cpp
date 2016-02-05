@@ -38,9 +38,8 @@ using namespace std;
 History* FullHistory::Cancel(map<string,Shape*> & model)
 {
 	map<string,Shape*>::iterator it;
-    model.clear();
-    model=prevModel;
-	FullHistory* opposite; //= new FullHistory("full", model);
+	FullHistory* opposite= new FullHistory("full", model);
+	model=prevModel;
     return opposite;
 }
 
@@ -75,7 +74,10 @@ FullHistory::FullHistory (string type, map<string,Shape*> & model )
     cout << "Appel au constructeur de <FullHistory>" << endl;
 #endif
     map<string,Shape*>::iterator it;
-    prevModel=model;
+    for(it=model.begin(); it!=model.end(); it++)
+    {
+    	prevModel.insert(pair<string, Shape*>(it->first,it->second));
+    }
 } //----- Fin de FullHistory
 
 
