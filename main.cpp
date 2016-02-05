@@ -19,6 +19,7 @@ using namespace std;
 #include <exception>
 #include <new>
 #include <stack>
+#include <set>
 
 //------------------------------------------------------ Include personnel
 #include "Point.h"
@@ -33,13 +34,12 @@ using namespace std;
 #include "History.h"
 #include "SingleHistory.h"
 #include "FullHistory.h"
-#include <set>
 //------------------------------------------------------ Declaration des fonctions
 
 string list(map<string, Shape*> & mapShapes);
 void treatsharp(ifstream & fichier, map<string, Shape*> & mapShapes);
 string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shape*> & mapShapes);
-set<Shape*> createdShape;
+vector<Shape*> createdShape;
 map<string, Shape*> Shapes;
 stack<History*> undo;
 stack<History*> redo;
@@ -61,14 +61,12 @@ int main(int argc, char **argv)
 
 	//memory cleaning
 	//erasing the contents of the model
-	set<Shape*>::iterator a=createdShape.begin();
-	while( a != createdShape.end() )
+	for(int i=0; i<createdShape.size(); i++)
 	{
-		if(*a!=0)
+		if(createdShape[i]!=0)
 		{
-			delete *a;
+			delete createdShape[i];
 		}
-		a++;
 	}
 	//erasing the history
 	while ( !redo.empty() )
@@ -215,10 +213,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				p[2] = atoi(splittedInput[4].c_str());
 				p[3] = atoi(splittedInput[5].c_str());
 				Segment* s= new Segment(name,p);
-				if(createdShape.find(s)==createdShape.end())
-				{
-					createdShape.insert(s);
-				}
+				createdShape.push_back(s);
 				mapShapes.insert(pair<string,Shape*>(name, s));
 				currHistory = new SingleHistory("create", s);
 				undo.push(currHistory);
@@ -243,10 +238,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				p[3] = atoi(splittedInput[5].c_str());
 				Rectangle* s= new Rectangle(name,p);
 				mapShapes.insert(pair<string,Shape*>(name, s));
-				if(createdShape.find(s)==createdShape.end())
-				{
-					createdShape.insert(s);
-				}
+				createdShape.push_back(s);
 				currHistory = new SingleHistory("create", s);
 				undo.push(currHistory);
 				ret[1]="OK\n";
@@ -270,10 +262,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 				if(size>5 && Polygone::convex(p,size))
 				{
 					Polygone* s = new Polygone(splittedInput[1] ,p, size);
-					if(createdShape.find(s)==createdShape.end())
-					{
-						createdShape.insert(s);
-					}
+					createdShape.push_back(s);
 					mapShapes.insert(pair<string,Shape*>(splittedInput[1], s));
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
@@ -312,10 +301,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 						vec.push_back( (mapMult[splittedInput[i]])->deepCopy());
 					}
 					Union* s = new Union(name,vec);
-					if(createdShape.find(s)==createdShape.end())
-					{
-						createdShape.insert(s);
-					}
+					createdShape.push_back(s);
 					mapShapes.insert(pair<string,Shape*>(name, s));
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
@@ -355,10 +341,7 @@ string* treatInput(string input, map<string, Shape*> & mapMult, map<string, Shap
 						vec.push_back( (mapMult[splittedInput[i]])->deepCopy());
 					}
 					Intersection* s = new Intersection(name,vec);
-					if(createdShape.find(s)==createdShape.end())
-					{
-						createdShape.insert(s);
-					}
+					createdShape.push_back(s);
 					mapShapes.insert(pair<string,Shape*>(name, s));
 					currHistory = new SingleHistory("create", s);
 					undo.push(currHistory);
